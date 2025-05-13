@@ -109,12 +109,12 @@
         </div>
         <div class="card-body">
             <div class="mb-3">
-                <label for="sustainability_title"><strong>Sustainability Title</strong></label>
+                <label for="sustainability_title"><strong>Sustainability Title</strong><span class="txt-danger">*</span></label>
                 <input type="text" name="sustainability_title" class="form-control" value="{{ $description->sustainability_title }}" required>
             </div>
 
             <div class="mb-3">
-                <label for="sustainability_image"><strong>Sustainability Image</strong></label>
+                <label for="sustainability_image"><strong>Sustainability Image</strong><span class="txt-danger">*</span></label>
                 <input type="file" name="sustainability_image" class="form-control" accept=".jpg,.jpeg,.png,.webp">
                 @if($description->sustainability_image)
                     <img src="{{ asset('/bhojwani/home/sustainability/'. $description->sustainability_image) }}" style="max-width: 120px; max-height: 100px; object-fit: cover;" class="mt-2">
@@ -122,16 +122,16 @@
             </div>
 
             <div class="mb-3">
-                <label for="sustainability_description"><strong>Sustainability Description</strong></label>
+                <label for="sustainability_description"><strong>Sustainability Description</strong><span class="txt-danger">*</span></label>
                 <textarea name="sustainability_description" class="form-control" rows="5" id="summernote" required>{{ $description->sustainability_description }}</textarea>
             </div>
         </div>
     </div>
-
+<br>
     <!-- Submit -->
-    <div class="text-end">
+                                    <div class="col-12 text-end">
     <a href="{{ route('growth-sustainability-details.index') }}" class="btn btn-secondary">Cancel</a>
-    <button type="submit" class="btn btn-success">Update</button>
+    <button type="submit" class="btn btn-primary">Update</button>
 </div>
 
 </form>

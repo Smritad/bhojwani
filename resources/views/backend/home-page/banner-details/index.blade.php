@@ -56,8 +56,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <!-- <th>Banner Heading</th> -->
-                                <th>Banner Title</th>
+                                <th>Banner Heading</th>
                                 <th>Banner Image</th>
                                 <th>Action</th>
                             </tr>
@@ -66,8 +65,7 @@
                             @foreach($banner_details as $index => $banner)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
-                                    <!-- <td>{{ $banner->banner_heading }}</td> -->
-                                    <td>{{ $banner->banner_title }}</td>
+                                    <td>{{ $banner->banner_heading }}</td>
                                     <td>
                                         @if($banner->banner_images)
                                             <img src="{{ asset('/bhojwani/home/banner/' . $banner->banner_images) }}" alt="Banner Image" style="max-height: 100px; border: 1px solid #ddd; padding: 5px;">

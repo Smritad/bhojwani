@@ -57,12 +57,12 @@
                                         <div class="invalid-feedback">Please enter a Banner Heading.</div>
                                     </div>
 
-                                    <!-- Banner Title-->
+                                    <!-- Banner Title
                                     <div class="col-xxl-4 col-sm-6">
                                         <label class="form-label" for="banner_title">Banner Title <span class="txt-danger">*</span></label>
                                         <input class="form-control" id="banner_title" type="text" name="banner_title" placeholder="Enter Banner Title" required>
                                         <div class="invalid-feedback">Please enter a Banner Title.</div>
-                                    </div>
+                                    </div> -->
 
                                     <!-- Banner Image-->
                                     <div class="col-xxl-4 col-sm-12">

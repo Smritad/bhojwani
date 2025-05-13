@@ -58,7 +58,7 @@
                                   <tr>
                                       <th>#</th>
                                       <th>Title</th>
-                                      <th>Description</th>
+                                      <!-- <th>Description</th> -->
                                       <th>Actions</th>
                                   </tr>
                               </thead>
@@ -67,7 +67,7 @@
                                       <tr>
                                           <td>{{ $index + 1 }}</td>
                                           <td>{{ $description->title }}</td>
-                                          <td>{!! $description->description !!}</td>
+                                          <!-- <td>{!! $description->description !!}</td> -->
                                           <td>
                                               <a href="{{ route('description-details.edit', $description->id) }}"
                                                 class="btn btn-sm btn-primary">Edit</a>

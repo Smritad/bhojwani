@@ -11,11 +11,13 @@ use App\Models\FooterDetails;
 
 class FooterDetailsController extends Controller
 {
-    public function index()
-    {
-        $footerDetails = FooterDetails::whereNull('deleted_at')->get();
-        return view('backend.home-page.footer-details.index', compact('footerDetails'));
-    }
+
+public function index()
+{
+    $footerDetails = FooterDetails::whereNull('deleted_at')->get();
+    return view('backend.home-page.footer-details.index', compact('footerDetails'));
+}
+
 
     public function create()
     {
@@ -45,35 +47,43 @@ class FooterDetailsController extends Controller
         return redirect()->route('footer.index')->with('message', 'Footer details added successfully!');
     }
 
-    public function edit($id)
-    {
-        $footer = FooterDetails::findOrFail($id);
-        return view('backend.home-page.footer-details.edit', compact('footer'));
+
+public function edit(FooterDetails $footer)
+{
+    // Check if social_media is a JSON string or an already decoded array
+    if (is_string($footer->social_media)) {
+        $footer->social_media = json_decode($footer->social_media, true) ?? [];
     }
 
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'email' => 'required|email',
-            'address' => 'required|string',
-            'url' => 'required|url',
-            'contact_number' => 'required',
-            'about' => 'required|string',
-            'social_media' => 'nullable|array',
-        ]);
+    // If social_media is already an array, no need to decode it
+    return view('backend.home-page.footer-details.edit', compact('footer'));
+}
 
-        $footer = FooterDetails::findOrFail($id);
-        $footer->update([
-            'email' => $request->email,
-            'address' => $request->address,
-            'url' => $request->url,
-            'contact_number' => $request->contact_number,
-            'about' => $request->about,
-            'social_media' => $request->social_media,
-        ]);
+public function update(Request $request, FooterDetails $footer)
+{
+    $request->validate([
+        'email' => 'required|email',
+        'address' => 'required|string',
+        'url' => 'required|url',
+        'contact_number' => 'required',
+        'about' => 'required|string',
+        'social_media' => 'nullable|array',
+    ]);
 
-        return redirect()->route('footer.index')->with('message', 'Footer details updated successfully!');
-    }
+    // Update the footer details
+    $footer->update([
+        'email' => $request->email,
+        'address' => $request->address,
+        'map_url' => $request->url,  // Ensure correct field name
+        'contact_number' => $request->contact_number,
+        'about' => $request->about,
+        'social_media' => json_encode($request->social_media), // Save as JSON
+    ]);
+
+    // Redirect back to the index with a success message
+    return redirect()->route('footer.index')->with('message', 'Footer details updated successfully!');
+}
+
 
     public function destroy($id)
     {

@@ -54,16 +54,16 @@
     @method('PUT')
 
     <div class="form-group">
-        <label for="title">Title</label>
+        <label for="title">Title<span class="txt-danger">*</span></label>
         <input type="text" name="title" id="title" class="form-control" value="{{ $description->title }}" required>
     </div>
-
+<br>
     <div class="form-group">
-        <label for="description">Description</label>
+        <label for="description">Description<span class="txt-danger">*</span></label>
         <textarea name="description" id="summernote" class="form-control" required>{{ $description->description }}</textarea>
     </div>
-
-    <div class="mt-3">
+<br>
+                                    <div class="col-12 text-end">
         <a href="{{ route('description-details.index') }}" class="btn btn-secondary">Cancel</a>
         <button type="submit" class="btn btn-primary">Update</button>
     </div>

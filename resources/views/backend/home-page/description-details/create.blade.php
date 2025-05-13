@@ -63,8 +63,8 @@
         <label for="description">Description <span class="txt-danger">*</span></label>
         <textarea name="description" id="summernote" placeholder="Enter Description" class="form-control" required></textarea>
     </div>
-
-    <div class="mt-3">
+<br>
+                                    <div class="col-12 text-end">
                 <a href="{{ route('description-details.index') }}" class="btn btn-secondary">Cancel</a>
 
         <button type="submit" class="btn btn-primary">Submit</button>

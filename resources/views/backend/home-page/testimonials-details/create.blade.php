@@ -39,12 +39,11 @@
                                 <table class="table table-bordered" id="testimonialTable">
                                     <thead class="table-light">
                                         <tr>
-                                            <th>Title</th>
-                                            <th>Description</th>
-                                            <th>Person Name</th>
-                                            <th>Designation</th>
-                                            <th>Rating</th>
-                                            <th>Token Name</th>
+                                            <th>Title<span class="txt-danger">*</span></th>
+                                            <th>Description<span class="txt-danger">*</span></th>
+                                            <th>Person Name<span class="txt-danger">*</span></th>
+                                            <th>Designation<span class="txt-danger">*</span></th>
+                                            <th>Rating<span class="txt-danger">*</span></th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -55,13 +54,12 @@
                                             <td><input type="text" name="testimonials[0][person_name]" class="form-control" required></td>
                                             <td><input type="text" name="testimonials[0][designation]" class="form-control" required></td>
                                             <td><input type="number" name="testimonials[0][rating]" class="form-control" min="1" max="5" required></td>
-                                            <td><input type="text" name="testimonials[0][token_name]" class="form-control"></td>
                                             <td><button type="button" class="btn btn-success addRow">Add</button></td>
                                         </tr>
                                     </tbody>
                                 </table>
-
-                                <div class="text-end mt-3">
+<br>
+                                    <div class="col-12 text-end">
                                     <a href="{{ route('testimonials-details.index') }}" class="btn btn-secondary">Cancel</a>
                                     <button type="submit" class="btn btn-primary">Submit Testimonials</button>
                                 </div>
@@ -90,7 +88,6 @@
                         <td><input type="text" name="testimonials[${index}][person_name]" class="form-control" required></td>
                         <td><input type="text" name="testimonials[${index}][designation]" class="form-control" required></td>
                         <td><input type="number" name="testimonials[${index}][rating]" class="form-control" min="1" max="5" required></td>
-                        <td><input type="text" name="testimonials[${index}][token_name]" class="form-control"></td>
                         <td><button type="button" class="btn btn-danger removeRow">Remove</button></td>
                     </tr>
                 `;

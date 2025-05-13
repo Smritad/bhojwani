@@ -58,7 +58,6 @@
             <th>Person</th>
             <th>Designation</th>
             <th>Rating</th>
-            <th>Token</th>
             <th>Actions</th>
         </tr>
     <tbody>
@@ -68,7 +67,6 @@
                 <td>{{ $testimonial->person_name }}</td>
                 <td>{{ $testimonial->designation }}</td>
                 <td>{{ $testimonial->rating }}</td>
-                <td>{{ $testimonial->token_name }}</td>
                 <td>
                     <a href="{{ route('testimonials-details.edit', $testimonial->id) }}" class="btn btn-sm btn-primary">Edit</a>
                     <form action="{{ route('testimonials-details.destroy', $testimonial->id) }}" method="POST" style="display:inline;">

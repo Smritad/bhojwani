@@ -39,11 +39,9 @@ class BannerDetailsController extends Controller
     {
         $request->validate([
             'banner_heading' => 'required|string|max:255',
-            'banner_title' => 'required|string|max:255',
             'banner_image' => 'required|max:3072',  
         ], [
             'banner_heading.required' => 'The banner heading is required.',
-            'banner_title.required' => 'The banner title is required.',
             'banner_image.required' => 'The banner image is required.',
             'banner_image.max' => 'The banner image must not be greater than 3MB.',
         ]);
@@ -58,7 +56,6 @@ class BannerDetailsController extends Controller
     
         $banner = new BannerDetails();
         $banner->banner_heading = $request->input('banner_heading');
-        $banner->banner_title = $request->input('banner_title');
         $banner->banner_images = $imageName;  
         $banner->created_at = Carbon::now(); 
         $banner->created_by = Auth::user()->id;
@@ -78,11 +75,9 @@ class BannerDetailsController extends Controller
     {
         $request->validate([
             'banner_heading' => 'required|string|max:255',
-            'banner_title' => 'required|string|max:255',
             'banner_image' => 'nullable|max:3072',  
         ], [
             'banner_heading.required' => 'The banner heading is required.',
-            'banner_title.required' => 'The banner title is required.',
             'banner_image.max' => 'The banner image must not be greater than 3MB.',
         ]);
 
@@ -96,7 +91,6 @@ class BannerDetailsController extends Controller
         }
 
         $banner->banner_heading = $request->input('banner_heading');
-        $banner->banner_title = $request->input('banner_title');
         $banner->banner_images = $imageName;  
         $banner->modified_at = Carbon::now();
         $banner->modified_by = Auth::user()->id; 

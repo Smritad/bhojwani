@@ -54,17 +54,38 @@
                   
                     <div class="table-responsive custom-scrollbar">
                     <table class="display" id="basic-1">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Email</th>
-                                <th>Description</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                       
-                        </tbody>
+
+
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Gmap URL</th>
+                <th>Contact Number</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($footerDetails as $footer)
+                <tr>
+                    <td>{{ $footer->email }}</td>
+                    <td>{{ $footer->address }}</td>
+                    <td>{{ $footer->url }}</td>
+                    <td>{{ $footer->contact_number }}</td>
+                    <td>
+                        <a href="{{ route('footer.edit', $footer->id) }}" class="btn btn-primary">Edit</a>
+
+                        <form action="{{ route('footer.destroy', $footer->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this footer?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
                     </table>
 
 

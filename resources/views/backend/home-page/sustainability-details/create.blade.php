@@ -2,6 +2,40 @@
 <html lang="en">
 <head>
     @include('components.backend.head')
+    <style>
+        /* Custom styles for better section visibility */
+        .section-header {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .section-container {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .section-container h5 {
+            margin-bottom: 15px;
+        }
+
+        .table-container {
+            margin-bottom: 20px;
+        }
+
+        /* Add padding for better readability */
+        .form-control {
+            margin-bottom: 10px;
+        }
+
+        .mb-4 {
+            margin-bottom: 25px !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -40,8 +74,10 @@
               @csrf
 
               <!-- SECTION 1: Growth Count -->
-              <div class="table-container mb-4">
-                <h5><strong>Section 1 – Growth Count (Thumbnail Images)</strong></h5>
+              <div class="section-container">
+                <div class="section-header">
+                  <h5><strong>Section 1 – Growth Count (Thumbnail Images)</strong></h5>
+                </div>
                 <table class="table table-bordered" id="dynamicTable">
                   <thead>
                     <tr>
@@ -68,31 +104,33 @@
               </div>
 
               <!-- SECTION 2: Sustainability -->
-              <div class="mb-4">
-                <h5><strong>Section 2 – Sustainability</strong></h5>
+              <div class="section-container">
+                <div class="section-header">
+                  <h5><strong>Section 2 – Sustainability</strong></h5>
+                </div>
                 <div class="mb-3">
-                  <label for="sustainability_title">Title</label>
+                  <label for="sustainability_title">Title<span class="txt-danger">*</span></label>
                   <input type="text" name="sustainability_title" class="form-control" required>
                 </div>
 
-               <div class="mb-3">
-  <label for="sustainability_image">Image</label>
-  <input type="file" id="sustainability_image" name="sustainability_image" class="form-control" accept=".jpg,.jpeg,.png,.webp" required>
-  <small class="text-secondary">Max size 2MB. Format: jpg, jpeg, png, webp</small>
-  <div id="sustainability-preview" class="mt-2"></div>
-</div>
+                <div class="mb-3">
+                  <label for="sustainability_image">Image<span class="txt-danger">*</span></label>
+                  <input type="file" id="sustainability_image" name="sustainability_image" class="form-control" accept=".jpg,.jpeg,.png,.webp" required>
+                  <small class="text-secondary">Max size 2MB. Format: jpg, jpeg, png, webp</small>
+                  <div id="sustainability-preview" class="mt-2"></div>
+                </div>
 
                 <div class="mb-3">
-                  <label for="sustainability_description">Description</label>
+                  <label for="sustainability_description">Description<span class="txt-danger">*</span></label>
                   <textarea name="sustainability_description" class="form-control" rows="5" id="summernote" required></textarea>
                 </div>
               </div>
 
-              <div class="text-end">
+              <!-- Submit and Cancel Buttons -->
+              <div class="col-12 text-end">
                 <a href="{{ route('growth-sustainability-details.index') }}" class="btn btn-secondary">Cancel</a>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-  
-            </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
 
             </form>
 
@@ -176,6 +214,7 @@ function previewThumbnail(input, rowId) {
     }
   }
 }
+
 // Preview for sustainability_image input
 document.getElementById('sustainability_image').addEventListener('change', function () {
   const file = this.files[0];
@@ -200,7 +239,6 @@ document.getElementById('sustainability_image').addEventListener('change', funct
     }
   }
 });
-
 </script>
 
 </body>

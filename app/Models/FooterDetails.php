@@ -20,16 +20,6 @@ class FooterDetails extends Model
         'social_media',
         'deleted_by',
         'deleted_at',
-
-
-        'email',
-        'address',
-        'url',
-        'contact_number',
-        'about',
-        'social_media',
-        'deleted_by',
-        'deleted_at',
     ];
 
     protected $casts = [

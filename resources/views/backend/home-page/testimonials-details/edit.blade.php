@@ -51,45 +51,47 @@
 
      
 
-    <form action="{{ route('testimonials-details.update', $testimonial->id) }}" method="POST">
-        @csrf
-        @method('PUT')
+   <form action="{{ route('testimonials-details.update', $testimonial->id) }}" method="POST">
+    @csrf
+    @method('PUT')
 
-        <div class="mb-3">
-            <label>Title</label>
-            <input type="text" name="title" class="form-control" value="{{ $testimonial->title }}" required>
-        </div>
+    <table class="table table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th>Title <span class="txt-danger">*</span></th>
+                <th>Description <span class="txt-danger">*</span></th>
+                <th>Person Name <span class="txt-danger">*</span></th>
+                <th>Designation <span class="txt-danger">*</span></th>
+                <th>Rating <span class="txt-danger">*</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="text" name="title" class="form-control" value="{{ old('title', $testimonial->title) }}" required>
+                </td>
+                <td>
+                    <textarea name="description" class="form-control" required>{{ old('description', $testimonial->description) }}</textarea>
+                </td>
+                <td>
+                    <input type="text" name="person_name" class="form-control" value="{{ old('person_name', $testimonial->person_name) }}" required>
+                </td>
+                <td>
+                    <input type="text" name="designation" class="form-control" value="{{ old('designation', $testimonial->designation) }}" required>
+                </td>
+                <td>
+                    <input type="number" name="rating" class="form-control" min="1" max="5" value="{{ old('rating', $testimonial->rating) }}" required>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-        <div class="mb-3">
-            <label>Description</label>
-            <textarea name="description" class="form-control" required>{{ $testimonial->description }}</textarea>
-        </div>
-
-        <div class="mb-3">
-            <label>Person Name</label>
-            <input type="text" name="person_name" class="form-control" value="{{ $testimonial->person_name }}" required>
-        </div>
-
-        <div class="mb-3">
-            <label>Designation</label>
-            <input type="text" name="designation" class="form-control" value="{{ $testimonial->designation }}" required>
-        </div>
-
-        <div class="mb-3">
-            <label>Rating</label>
-            <input type="number" name="rating" class="form-control" value="{{ $testimonial->rating }}" min="1" max="5" required>
-        </div>
-
-        <div class="mb-3">
-            <label>Token Name</label>
-            <input type="text" name="token_name" class="form-control" value="{{ $testimonial->token_name }}">
-        </div>
-
-        <div class="mt-3">
-                        <a href="{{ route('testimonials-details.index') }}" class="btn btn-secondary">Cancel</a>
-            <button type="submit" class="btn btn-primary">Update</button>
-        </div>
-    </form>
+    <br>
+    <div class="col-12 text-end">
+        <a href="{{ route('testimonials-details.index') }}" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-primary">Update Testimonial</button>
+    </div>
+</form>
 
     </div>
 

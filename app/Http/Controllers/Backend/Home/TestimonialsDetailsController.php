@@ -28,7 +28,6 @@ class TestimonialsDetailsController extends Controller
                 'person_name' => $testimonial['person_name'],
                 'designation' => $testimonial['designation'],
                 'rating' => $testimonial['rating'],
-                'token_name' => $testimonial['token_name'],
                 'created_by' => Auth::id(),
             ]);
         }
@@ -52,7 +51,6 @@ class TestimonialsDetailsController extends Controller
             'person_name' => $request->person_name,
             'designation' => $request->designation,
             'rating' => $request->rating,
-            'token_name' => $request->token_name,
             'updated_by' => Auth::id(),
         ]);
 

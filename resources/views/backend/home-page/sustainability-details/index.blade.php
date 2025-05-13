@@ -1,117 +1,104 @@
 <!doctype html>
 <html lang="en">
-    
+
 <head>
     @include('components.backend.head')
 </head>
-	   
-		@include('components.backend.header')
 
-	    <!--start sidebar wrapper-->	
-	    @include('components.backend.sidebar')
-	   <!--end sidebar wrapper-->
+<body>
 
-    
-     <div class="page-body">
-          <div class="container-fluid">
-            <div class="page-title">
-              <div class="row">
-                <div class="col-6">
-                </div>
-                <div class="col-6">
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">                                       
-                        <svg class="stroke-icon">
-                          <use href="../assets/svg/icon-sprite.svg#stroke-home"></use>
-                        </svg></a></li>
-                  </ol>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Container-fluid starts-->
-          <div class="container-fluid">
+@include('components.backend.header')
+@include('components.backend.sidebar')
+
+<div class="page-body">
+    <div class="container-fluid">
+        <div class="page-title mb-3">
             <div class="row">
-              <!-- Zero Configuration  Starts-->
-              <div class="col-sm-12">
+                <div class="col-6">
+                    <h4>Sustainability Details List</h4>
+                </div>
+                <div class="col-6 text-end">
+                    <ol class="breadcrumb justify-content-end">
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('growth-sustainability-details.index') }}">
+                                <svg class="stroke-icon" width="18" height="18">
+                                    <use href="../assets/svg/icon-sprite.svg#stroke-home"></use>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active">Sustainability Details</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Table Card -->
+        <div class="row">
+            <div class="col-sm-12">
                 <div class="card">
-                  <div class="card-body">
 
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-								<nav aria-label="breadcrumb" role="navigation">
-									<ol class="breadcrumb mb-0">
-										<li class="breadcrumb-item">
-											<a href="{{ route('growth-sustainability-details.index') }}">Home</a>
-										</li>
-										<li class="breadcrumb-item active" aria-current="page">Sustainability Details</li>
-									</ol>
-								</nav>
+                    <div class="card-body">
 
-								<a href="{{ route('growth-sustainability-details.create') }}" class="btn btn-primary px-5 radius-30">+ Add sustainability Details</a>
-							</div>
-    
-       <div class="table-responsive custom-scrollbar">
-    <table class="display" id="basic-1">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="mb-0">All Entries</h5>
+                            <a href="{{ route('growth-sustainability-details.create') }}" class="btn btn-primary px-4 radius-30">
+                                + Add Sustainability Details
+                            </a>
+                        </div>
 
+                        <div class="table-responsive custom-scrollbar">
+                            <table class="table table-bordered display" id="basic-1">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Sustainability Title</th>
+                                        <th>Sustainability Description</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse($descriptions as $index => $description)
+                                        <tr>
+                                            <td>{{ $index + 1 }}</td>
+                                            <td>{{ $description->sustainability_title }}</td>
+                                            <td>{{ Str::limit(strip_tags($description->sustainability_description), 100) }}</td>
+                                            <td>
+                                                <a href="{{ route('growth-sustainability-details.edit', $description->id) }}"
+                                                   class="btn btn-sm btn-primary mb-1">
+                                                    Edit
+                                                </a>
 
-        <thead>
-            <tr>
-                <th>Thumbnail Image</th>
-                <th>Heading</th>
-                <th>Title</th>
-                <th>Sustainability Title</th>
-                <th>Sustainability Description</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($descriptions as $description)
-                <tr>
-                    <td>
-                        @foreach(json_decode($description->thumbnail_images, true) as $thumbnail)
-                          <img src="{{ asset('/bhojwani/home/sustainability/' . $thumbnail) }}" alt="Thumbnail" width="100">
-                        @endforeach
-                    </td>
-
-                    <td>{{ implode(', ', json_decode($description->heading)) }}</td>
-                    <td>{{ implode(', ', json_decode($description->title)) }}</td>
-                    <td>{{ $description->sustainability_title }}</td>
-                    <td>{{ Str::limit($description->sustainability_description, 100) }}</td>
-                    <td>
-                        <a href="{{ route('growth-sustainability-details.edit', $description->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                        <br>                       
-                         <br>
-
-                        <form action="{{ route('growth-sustainability-details.destroy', $description->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-
-
-    </div>
-
-
-
+                                                <form action="{{ route('growth-sustainability-details.destroy', $description->id) }}"
+                                                      method="POST"
+                                                      style="display:inline-block;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger"
+                                                            onclick="return confirm('Are you sure you want to delete this item?');">
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="4" class="text-center">No data available.</td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
 
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-            <!-- footer start-->
-             @include('components.backend.footer')
-      </div>
+        <!-- End Data Table Card -->
     </div>
+</div>
 
-        @include('components.backend.main-js')
+@include('components.backend.footer')
+@include('components.backend.main-js')
 
 </body>
 
