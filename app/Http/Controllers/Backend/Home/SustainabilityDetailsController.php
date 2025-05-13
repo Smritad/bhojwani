@@ -26,6 +26,7 @@ class SustainabilityDetailsController extends Controller
 public function store(Request $request)
 {
     $request->validate([
+        // Removed the 'required' rule from the thumbnail_image.* field
         'thumbnail_image.*' => 'image|mimes:jpeg,jpg,png,webp|max:2048',
         'heading.*' => 'required|string|max:255',
         'title.*' => 'required|string|max:255',

@@ -58,23 +58,25 @@
 
         <thead>
             <tr>
+              <th>#</th>
                 <th>Email</th>
-                <th>Address</th>
+                <!-- <th>Address</th> -->
                 <th>Gmap URL</th>
                 <th>Contact Number</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($footerDetails as $footer)
+            @foreach($footerDetails as $index => $footer)
                 <tr>
+                    <td>{{ $index + 1 }}</td>
                     <td>{{ $footer->email }}</td>
-                    <td>{{ $footer->address }}</td>
+                    <!-- <td>{{ $footer->address }}</td> -->
                     <td>{{ $footer->url }}</td>
                     <td>{{ $footer->contact_number }}</td>
                     <td>
                         <a href="{{ route('footer.edit', $footer->id) }}" class="btn btn-primary">Edit</a>
-
+<br><br>
                         <form action="{{ route('footer.destroy', $footer->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this footer?')">
                             @csrf
                             @method('DELETE')

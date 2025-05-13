@@ -54,6 +54,8 @@
     <table class="display" id="basic-1">
     <thead>
         <tr>
+                      <th>#</th>
+
             <th>Title</th>
             <th>Person</th>
             <th>Designation</th>
@@ -61,8 +63,9 @@
             <th>Actions</th>
         </tr>
     <tbody>
-        @foreach ($testimonials as $testimonial)
+        @foreach ($testimonials as $index => $testimonial)
             <tr>
+                <td>{{ $index + 1 }}</td>
                 <td>{{ $testimonial->title }}</td>
                 <td>{{ $testimonial->person_name }}</td>
                 <td>{{ $testimonial->designation }}</td>

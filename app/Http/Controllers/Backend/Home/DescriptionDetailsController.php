@@ -37,7 +37,7 @@ $descriptions = DescriptionDetails::whereNull('deleted_by')->get();
         // Validate the input data
         $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'required|string|max:1000',
+            'description' => 'required|string|max:20000',
         ]);
 
         // Store the description details
@@ -62,7 +62,7 @@ $descriptions = DescriptionDetails::whereNull('deleted_by')->get();
         // Validate the input data
         $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'required|string|max:1000',
+            'description' => 'required|string|max:20000',
         ]);
 
         // Update the description details
