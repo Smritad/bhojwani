@@ -66,5 +66,5 @@ Route::resource('footer', FooterDetailsController::class);
 Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHistoryMiddleware::class]],function(){
 
     // ==== Home
-    Route::get('/', [HomeController::class, 'home'])->name('frontend.index');
+    Route::get('/home', [HomeController::class, 'home'])->name('frontend.index');
 });
