@@ -41,13 +41,13 @@
 								<nav aria-label="breadcrumb" role="navigation">
 									<ol class="breadcrumb mb-0">
 										<li class="breadcrumb-item">
-											<a href="{{ route('ourproject-details.index') }}">Home</a>
+											<a href="{{ route('projectinformation-details.index') }}">Home</a>
 										</li>
-										<li class="breadcrumb-item active" aria-current="page">Project Details</li>
+										<li class="breadcrumb-item active" aria-current="page">Project information</li>
 									</ol>
 								</nav>
 
-								<a href="{{ route('ourproject-details.create') }}" class="btn btn-primary px-5 radius-30">+ Add Project Category Details</a>
+								<a href="{{ route('projectinformation-details.create') }}" class="btn btn-primary px-5 radius-30">+ Add Project Category Details</a>
 							</div>
 
 
@@ -67,28 +67,7 @@
             <th>Action</th>
         </tr>
     </thead>
-    <tbody>
-        @foreach($projects as $key => $project)
-            <tr>
-                <td>{{ $key + 1 }}</td>
-                <td><img src="{{ asset('/bhojwani/project/banner/' . $project->banner_image) }}" width="80"></td>
-                                <td><img src="{{ asset('/bhojwani/project/project_images/' . $project->project_image) }}" width="80"></td>
-                <td>{{ $project->category->category_name ?? '' }}</td>
-                <td>{{ $project->project_heading }}</td>
-                <td>{{ $project->title }}</td>
-                <td>{{ $project->location }}</td>
-                <td>
-                    <a href="{{ route('ourproject-details.edit', $project->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                    <br><br>
-                    <form action="{{ route('ourproject-details.destroy', $project->id) }}" method="POST" style="display:inline-block;">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-sm btn-danger" onclick="return confirm('Delete this project?')">Delete</button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
+  
 </table>
 
 

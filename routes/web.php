@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\Home\TestimonialsDetailsController;
 use App\Http\Controllers\Backend\Home\FooterDetailsController;
 use App\Http\Controllers\Backend\Home\OurProjectController;
 use App\Http\Controllers\Backend\Home\OurProjectDetailsController;
+use App\Http\Controllers\Backend\Home\ProjectInformationController;
 
 
 
@@ -67,6 +68,9 @@ Route::resource('ourprojectcategory-details', OurProjectController::class);
 
 // ==== Manage our project section 
 Route::resource('ourproject-details', OurProjectDetailsController::class);
+
+// ==== Manage our project section 
+Route::resource('projectinformation-details', ProjectInformationController::class);
 //================================================================================================== frontend
 Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHistoryMiddleware::class]],function(){
 

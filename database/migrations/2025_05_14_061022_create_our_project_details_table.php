@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('our_project_details', function (Blueprint $table) {
             $table->id();
             $table->string('project_heading');
+             $table->string('title');
             $table->string('slug');
             $table->string('location');
             $table->string('banner_image');

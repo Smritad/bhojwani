@@ -17,14 +17,14 @@
             <div class="page-title">
               <div class="row">
                 <div class="col-6">
-                  <h4>Edit Project Details Form</h4>
+                  <h4>Edit Project Information Form</h4>
                 </div>
                 <div class="col-6">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                     <a href="{{ route('ourproject-details.index') }}">Home</a>
                     </li>
-                    <li class="breadcrumb-item active">Edit Project Details</li>
+                    <li class="breadcrumb-item active">Edit Project Information</li>
                 </ol>
 
                 </div>
@@ -37,7 +37,7 @@
                 <div class="col-md-12">
                     <div class="card">
                     <div class="card-header">
-                        <h4>Project Details Form</h4>
+                        <h4>Project Information Form</h4>
                         <p class="f-m-light mt-1">Fill up your true details and submit the form.</p>
                     </div>
                     <div class="card-body">

@@ -86,19 +86,19 @@
 
     <!-- Project Heading -->
     <div class="mb-3">
-        <label for="project_heading" class="form-label">Project Heading</label>
+        <label for="project_heading" class="form-label">Project Heading<span class="txt-danger">*</span></label>
         <input type="text" name="project_heading" class="form-control" placeholder="Enter Project Heading" required>
     </div>
 
     <!-- Title -->
     <div class="mb-3">
-        <label for="title" class="form-label">Title</label>
+        <label for="title" class="form-label">Title<span class="txt-danger">*</span></label>
         <input type="text" name="title" class="form-control" placeholder="Enter Project Title" required>
     </div>
 
     <!-- Location -->
     <div class="mb-3">
-        <label for="location" class="form-label">Location</label>
+        <label for="location" class="form-label">Location<span class="txt-danger">*</span></label>
         <input type="text" name="location" class="form-control" placeholder="Enter Location" required>
     </div>
 
