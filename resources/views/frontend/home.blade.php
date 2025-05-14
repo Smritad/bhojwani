@@ -7,7 +7,7 @@
 
 <body>
     <div class="preloader">
-        <div class="preloader__image" style="background-image: url({{ asset('frontend/assets/assets/images/Bhojwani-logo-white.png')}});"></div>
+        <div class="preloader__image" style="background-image: url({{ asset('frontend/assets/images/Bhojwani-logo-white.png')}});"></div>
     </div>
     <!-- /.preloader -->
     <div class="page-wrapper">

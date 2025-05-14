@@ -21,6 +21,8 @@ use App\Http\Controllers\Backend\Home\ProjectInformationController;
 
 
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\CategoryDetailsController;
+use App\Http\Controllers\Frontend\AllCategoryDetailsController;
 
 
 Route::get('/', function () {
@@ -76,4 +78,8 @@ Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHist
 
     // ==== Home
     Route::get('/', [HomeController::class, 'home'])->name('frontend.index');
+    //===== Category Page
+    Route::get('/project-listing', [CategoryDetailsController::class, 'category_details']);
+Route::get('/project-listing/{slug}', [AllCategoryDetailsController::class, 'all_category_details']);
+
 });

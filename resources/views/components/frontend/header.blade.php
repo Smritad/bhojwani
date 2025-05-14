@@ -2,7 +2,7 @@
             <div class="container">
                 <div class="main-header__inner">
                     <div class="main-header__logo">
-                        <a href="#">
+                        <a href="/">
 <img src="{{ asset('frontend/assets/images/Bhojwani-Logo.webp') }}" alt="Bhojwani Logo">
                         </a>
                     </div><!-- /.main-header__logo -->
@@ -19,13 +19,18 @@
 
 
                             <li class="dropdown">
-                                <a href="#">Our Projects</a>
-                                <ul>
-                                    <li><a href="#">Ongoing Projects</a></li>
-                                    <li><a href="#">Completed Projects</a></li>
-                                    <li><a href="#">Upcoming Projects</a></li>
-                                </ul>
-                            </li>
+    <a href="{{ url('/project-listing') }}">Our Projects</a>
+    <ul>
+        @foreach($categories as $category)
+            <li>
+                <a href="{{ url('/project-listing/' . $category->slug) }}">
+                    {{ $category->category_name }}
+                </a>
+            </li>
+        @endforeach
+    </ul>
+</li>
+
                             <li>
                                 <a href="#">Blog</a>
                             </li>

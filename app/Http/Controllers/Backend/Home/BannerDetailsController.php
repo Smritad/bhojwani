@@ -35,34 +35,57 @@ class BannerDetailsController extends Controller
     }
 
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'banner_heading' => 'required|string|max:255',
-            'banner_image' => 'required|max:3072',  
-        ], [
-            'banner_heading.required' => 'The banner heading is required.',
-            'banner_image.required' => 'The banner image is required.',
-            'banner_image.max' => 'The banner image must not be greater than 3MB.',
-        ]);
-    
-        $imageName = null;
-    
-        if ($request->hasFile('banner_image')) {
-            $image = $request->file('banner_image');
-            $imageName = time() . rand(10, 999) . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('/bhojwani/home/banner'), $imageName);  
+  public function store(Request $request)
+{
+    // Validate the form inputs
+    $request->validate([
+        'banner_image.*' => 'required|image|max:5120',  // Allow multiple banner images
+        'banner_heading' => 'required|string|max:255',
+        'banner_description' => 'required|string',
+        'description_image' => 'required|image',
+        'description' => 'required|string',
+        'heading' => 'required|string|max:255',
+        'more_description' => 'required|string',
+        'more_image' => 'required|image'
+    ]);
+
+    $data = [];
+
+    // Handling multiple banner images
+    if ($request->hasFile('banner_image')) {
+        $bannerImageNames = [];
+        foreach ($request->file('banner_image') as $file) {
+            $filename = Str::random(40) . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('bhojwani/project_information/banner'), $filename);
+            $bannerImageNames[] = $filename;
         }
-    
-        $banner = new BannerDetails();
-        $banner->banner_heading = $request->input('banner_heading');
-        $banner->banner_images = $imageName;  
-        $banner->created_at = Carbon::now(); 
-        $banner->created_by = Auth::user()->id;
-        $banner->save();  
-    
-        return redirect()->route('banner-details.index')->with('message', 'Banner has been successfully added!');
+        $data['banner_images'] = json_encode($bannerImageNames); // Store images as a JSON array
     }
+
+    // Handle other images
+    $descImage = $request->file('description_image');
+    $descImageName = Str::random(40) . '.' . $descImage->getClientOriginalExtension();
+    $descImage->move(public_path('bhojwani/project_information/project_image'), $descImageName);
+    $data['description_image'] = $descImageName;
+
+    $moreImage = $request->file('more_image');
+    $moreImageName = Str::random(40) . '.' . $moreImage->getClientOriginalExtension();
+    $moreImage->move(public_path('bhojwani/project_information/project_image'), $moreImageName);
+    $data['more_image'] = $moreImageName;
+
+    // Other form data
+    $data['banner_heading'] = $request->banner_heading;
+    $data['banner_description'] = $request->banner_description;
+    $data['description'] = $request->description;
+    $data['heading'] = $request->heading;
+    $data['more_description'] = $request->more_description;
+    $data['created_by'] = Auth::id();
+
+    BannerDetails::create($data);
+
+    return redirect()->route('projectinformation-details.index')->with('message', 'Project Information successfully added!');
+}
+
 
     public function edit($id)
     {

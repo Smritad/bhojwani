@@ -47,26 +47,38 @@
 									</ol>
 								</nav>
 
-								<a href="{{ route('projectinformation-details.create') }}" class="btn btn-primary px-5 radius-30">+ Add Project Category Details</a>
+								<a href="{{ route('projectinformation-details.create') }}" class="btn btn-primary px-5 radius-30">+ Add Project information</a>
 							</div>
+             <div class="table-responsive custom-scrollbar">
+                    <table class="display" id="basic-1">        
+                      <thead>
+            <tr>
+                <th>Banner Heading</th>
+                <th>Description Heading</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($project_details as $detail)
+                <tr>
+                    <td>{{ $detail->banner_heading }}</td>
+                    <td>{{ $detail->heading }}</td>
+                    <td>
+                        <a href="{{ route('projectinformation-details.edit', $detail->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                        <form action="{{ route('projectinformation-details.destroy', $detail->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 
+</div>
 
-                    <div class="table-responsive custom-scrollbar">
-                    <table class="display" id="basic-1">
-                     
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Banner</th>
-                        <th>Project Image</th>
-
-            <th>Category</th>
-            <th>Project Heading</th>
-            <th>Title</th>
-            <th>Location</th>
-            <th>Action</th>
-        </tr>
-    </thead>
   
 </table>
 
