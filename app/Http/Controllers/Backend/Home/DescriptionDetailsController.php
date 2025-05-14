@@ -16,6 +16,7 @@ use App\Models\Permission;
 use App\Models\UsersPermission;
 use App\Models\BannerDetails;
 use App\Models\DescriptionDetails;
+use App\Models\IntroductionDetails;
 
 
 class DescriptionDetailsController extends Controller

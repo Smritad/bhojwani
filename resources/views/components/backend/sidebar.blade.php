@@ -53,6 +53,23 @@
                   </ul>
                 </li>
 
+  <li class="sidebar-list {{ request()->routeIs('ourprojectcategory-details.index') ? 'active' : '' }}">
+                  <i class="fa fa-thumb-tack"> </i>
+                  <a class="sidebar-link sidebar-title" href="#">
+                    <svg class="stroke-icon"> 
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-icons') }}"></use>
+                    </svg>
+                    <svg class="fill-icon">
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-icons') }}"></use>
+                    </svg>
+                    <span>Our Project</span>
+                  </a>
+                  <ul class="sidebar-submenu">
+                    <li><a href="{{ route('ourprojectcategory-details.index') }}" class="{{ request()->routeIs('ourprojectcategory-details.index') ? 'active' : '' }}">Our Project Category Details</a></li>
+                    <li><a href="{{ route('ourproject-details.index') }}" class="{{ request()->routeIs('ourproject-details.index') ? 'active' : '' }}">Our Project Details</a></li>
+
+                  </ul>
+                </li>
 
                
 

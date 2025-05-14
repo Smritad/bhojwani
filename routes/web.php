@@ -14,6 +14,8 @@ use App\Http\Controllers\Backend\Home\IntroductionDetailsController;
 use App\Http\Controllers\Backend\Home\SustainabilityDetailsController;
 use App\Http\Controllers\Backend\Home\TestimonialsDetailsController;
 use App\Http\Controllers\Backend\Home\FooterDetailsController;
+use App\Http\Controllers\Backend\Home\OurProjectController;
+use App\Http\Controllers\Backend\Home\OurProjectDetailsController;
 
 
 
@@ -60,8 +62,11 @@ Route::resource('testimonials-details', TestimonialsDetailsController::class);
 // ==== Manage footer section in Home
 Route::resource('footer', FooterDetailsController::class);
 
+// ==== Manage our project section 
+Route::resource('ourprojectcategory-details', OurProjectController::class);
 
-
+// ==== Manage our project section 
+Route::resource('ourproject-details', OurProjectDetailsController::class);
 //================================================================================================== frontend
 Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHistoryMiddleware::class]],function(){
 
