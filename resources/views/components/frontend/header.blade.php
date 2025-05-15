@@ -1,33 +1,32 @@
+  @php
+    use App\Models\OurProjectCategory;
+    $categories = OurProjectCategory::all();
+@endphp
+
  <header class="main-header main-header--two sticky-header sticky-header--normal">
             <div class="container">
                 <div class="main-header__inner">
                     <div class="main-header__logo">
                         <a href="/">
-<img src="{{ asset('frontend/assets/images/Bhojwani-Logo.webp') }}" alt="Bhojwani Logo">
+                            <img src="{{ asset('frontend/assets/images/Bhojwani-Logo.webp') }}" alt="Bhojwani Logo">
                         </a>
-                    </div><!-- /.main-header__logo -->
-
+                    </div>
                     <nav class="main-header__right main-header__nav main-menu">
                         <ul class="main-menu__list">
-
-                            <!-- <li>
-                                <a href="#">Home</a>
-                            </li> -->
-<li>
+                            <li>
                                 <a href="#">About Us</a>
-                            </li>
-
-
+                            </li> 
                             <li class="dropdown">
-    <a href="{{ url('/project-listing') }}">Our Projects</a>
-    <ul>
-        @foreach($categories as $category)
-            <li>
-                <a href="{{ url('/project-listing/' . $category->slug) }}">
-                    {{ $category->category_name }}
-                </a>
-            </li>
-        @endforeach
+                       <a href="{{ route('our.project') }}">Our Projects</a>
+                                <ul>
+                                  @foreach($categories as $category)
+    <li>
+        <a href="{{ route('our.project', ['slug' => $category->slug]) }}">
+            {{ $category->category_name }}
+        </a>
+    </li>
+@endforeach
+
     </ul>
 </li>
 
@@ -41,27 +40,15 @@
                                 <a href="#">Contact Us</a>
                             </li>
                         </ul>
-                    </nav><!-- /.main-header__nav -->
+                    </nav>
 
                     <div class="main-header__right">
                         <div class="mobile-nav__btn mobile-nav__toggler">
                             <span></span>
                             <span></span>
                             <span></span>
-                        </div><!-- /.mobile-nav__toggler -->
-
-
-<!--                         <a href="#" class="search-toggler d-flex align-items-center">
-                            <div class="main-header__search">
-                                <i class="icon-search-1" aria-hidden="true"></i>
-                                <span class="sr-only">Search</span>
-                            </div>
-                        </a> -->
-
-                        <!-- <a href="#" class="wallpi-btn main-header__btn">
-                            <span>Enquire Now</span>
-                        </a> -->
-                    </div><!-- /.main-header__right -->
-                </div><!-- /.main-header__inner -->
-            </div><!-- /.container-fluid -->
-        </header><!-- /.main-header -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>

@@ -10,9 +10,8 @@
         </div>
 @include('components.frontend.header')
            
-               @if($bannerProject)
 <section class="page-header @@ExtraClass">
-    <div class="page-header__bg" style="background-image: url('{{ asset('bhojwani/project/banner/' . $bannerProject->project_image) }}');"></div>
+    <div class="page-header__bg" style="background-image: url('{{ asset('bhojwani/project/banner/' ) }}');"></div>
     <div class="container">
         <ul class="wallpi-breadcrumb list-unstyled">
             <li><a href="{{ url('/') }}">Home</a></li>
@@ -21,7 +20,7 @@
         <h2 class="page-header__title">Our Projects</h2>
     </div>
 </section>
-@endif
+
 
 
         <section class="project-one project-one--two project-one--page">
@@ -36,9 +35,7 @@
             <div class="project-one__item__info">
                 <div class="project-one__item__bg">
                     <h4 class="project-one__item__heading">
-                        <a href="{{ route('project.details', ['category_slug' => $project->category_slug, 'project_slug' => $project->slug]) }}">
-                            {{ $project->project_heading }}
-                        </a>
+                        <a href="{{ url($project->slug) }}">{{ $project->project_heading }}</a>
                     </h4>
                     <strong class="project-one__item__text">
                         {{ $project->title }} <span>Location: {{ $project->location }}</span>
@@ -68,7 +65,7 @@
                         <div class="consultation-one__contentwrap__bg" style="background-image: url('assets/images/backgrounds/consultation-bg1-1.png');"></div>
                         <div class="consultation-one__contentwrap__content">
                                                                 <h2 class="sec-title__title">Get In Touch</h2><!-- /.sec-title__title -->
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                             <form class="contact__form contact-form-validated" action="#" novalidate="novalidate">
                                 <div class="row">
                                     <div class="col-md-4">

@@ -79,7 +79,7 @@ Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHist
     // ==== Home
     Route::get('/', [HomeController::class, 'home'])->name('frontend.index');
     //===== Category Page
-    Route::get('/project-listing', [CategoryDetailsController::class, 'category_details']);
-Route::get('/project-listing/{slug}', [AllCategoryDetailsController::class, 'all_category_details']);
+    Route::get('/our-project', [CategoryDetailsController::class, 'category_details'])->name('our.project');
+    Route::get('/{category_slug}/{project_slug}', [CategoryDetailsController::class, 'all_category_details'])->name('project.details');
 
 });
