@@ -68,6 +68,7 @@
                     <li><a href="{{ route('ourprojectcategory-details.index') }}" class="{{ request()->routeIs('ourprojectcategory-details.index') ? 'active' : '' }}">Our Project Category Details</a></li>
                     <li><a href="{{ route('ourproject-details.index') }}" class="{{ request()->routeIs('ourproject-details.index') ? 'active' : '' }}">Our Project Details</a></li>
                     <li><a href="{{ route('projectinformation-details.index') }}" class="{{ request()->routeIs('projectinformation-details.index') ? 'active' : '' }}">Our Project Information</a></li>
+                    <li><a href="{{ route('projectamenity-details.index') }}" class="{{ request()->routeIs('projectamenity-details.index') ? 'active' : '' }}">Our Project Amenity</a></li>
 
                   </ul>
                 </li>

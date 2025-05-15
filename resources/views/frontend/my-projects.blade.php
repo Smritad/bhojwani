@@ -9,19 +9,6 @@
         <div class="preloader__image" style="background-image: url({{ asset('frontend/assets/images/Bhojwani-logo-white.png')}});"></div>
         </div>
 @include('components.frontend.header')
-           
-                @foreach($projects as $project)
-<section class="page-header @@ExtraClass">
-    <div class="page-header__bg" style="background-image: url('{{ asset('/bhojwani/project/banner/' . $project->banner_image) }}');"></div>
-    <div class="container">
-        <ul class="wallpi-breadcrumb list-unstyled">
-            <li><a href="{{ url('/') }}">Home</a></li>
-            <li><span>{{ $project->category_name }}</span></li>
-        </ul>
-        <h2 class="page-header__title">{{ $project->category_name }}</h2>
-    </div>
-</section>
-@endforeach
 
 
         <section class="project-one project-one--two project-one--page">

@@ -17,12 +17,14 @@ use App\Http\Controllers\Backend\Home\FooterDetailsController;
 use App\Http\Controllers\Backend\Home\OurProjectController;
 use App\Http\Controllers\Backend\Home\OurProjectDetailsController;
 use App\Http\Controllers\Backend\Home\ProjectInformationController;
+use App\Http\Controllers\Backend\Home\ProjectAmenityController;
 
 
 
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\CategoryDetailsController;
 use App\Http\Controllers\Frontend\AllCategoryDetailsController;
+use App\Http\Controllers\Frontend\ContactController;
 
 
 Route::get('/', function () {
@@ -73,13 +75,18 @@ Route::resource('ourproject-details', OurProjectDetailsController::class);
 
 // ==== Manage our project section 
 Route::resource('projectinformation-details', ProjectInformationController::class);
+
+// ==== Manage our project section 
+Route::resource('projectamenity-details', ProjectAmenityController::class);
 //================================================================================================== frontend
 Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHistoryMiddleware::class]],function(){
 
-    // ==== Home
-    Route::get('/', [HomeController::class, 'home'])->name('frontend.index');
-    //===== Category Page
-    Route::get('/our-project', [CategoryDetailsController::class, 'category_details'])->name('our.project');
-    Route::get('/{category_slug}/{project_slug}', [CategoryDetailsController::class, 'all_category_details'])->name('project.details');
+ 
+Route::get('/', [HomeController::class, 'home'])->name('frontend.index');
+ Route::get('our-projects', [CategoryDetailsController::class, 'our_project'])->name('project');
+ Route::get('{slug}', [CategoryDetailsController::class, 'category_details'])->name('our.project');
+Route::get('/{category_slug}/{project_slug}', [CategoryDetailsController::class, 'all_category_details'])->name('project.details');
+
+
 
 });

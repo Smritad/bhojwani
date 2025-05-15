@@ -8,7 +8,7 @@ class ProjectInformation extends Model
 {
     protected $table = 'project_informations'; 
     protected $fillable = [
-        'banner_image', 'banner_heading', 'banner_description',
+        'banner_image', 'banner_heading', 'banner_description','category_id',
         'description_image', 'description', 'heading', 
         'more_description', 'more_image', 'deleted_by', 'deleted_at'
     ];

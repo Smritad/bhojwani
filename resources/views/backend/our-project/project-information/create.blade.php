@@ -79,7 +79,16 @@
                                     </div>
                                 </div>
                             </div>
-
+<!-- Project Category -->
+    <div class="mb-3 col-xxl-4 col-sm-12">
+        <label class="form-label" for="category_id">Project Category <span class="txt-danger">*</span></label>
+        <select name="category_id" id="category_id" class="form-control" required>
+            <option value="">Select Category</option>
+            @foreach ($categories as $cat)
+                <option value="{{ $cat->id }}">{{ $cat->project_heading}}</option>
+            @endforeach
+        </select>
+    </div>
                             <!-- Description Section -->
                             <div class="card mb-4">
                                 <div class="card-header bg-primary text-white">Description Section</div>

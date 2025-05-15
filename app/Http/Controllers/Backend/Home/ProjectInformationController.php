@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Exception;
+use App\Models\OurProjectCategory;
+use App\Models\OurProjectDetail;
 
 class ProjectInformationController extends Controller
 {
@@ -18,9 +20,11 @@ class ProjectInformationController extends Controller
         return view('backend.our-project.project-information.index', compact('project_details'));
     }
 
-    public function create()
+    
+public function create()
     {
-        return view('backend.our-project.project-information.create');
+        $categories = OurProjectDetail::all();
+        return view('backend.our-project.project-information.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -30,10 +34,13 @@ class ProjectInformationController extends Controller
             'banner_image.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:512000',
             'banner_heading' => 'required|string|max:255',
             'banner_description' => 'required|string',
+            'category_id' => 'required|exists:our_project_categories,id',
+
             'description_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:512000',
             'description' => 'required|string',
             'heading' => 'required|string|max:255',
             'more_description' => 'required|string',
+
             'more_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:512000',
         ]);
 
@@ -63,6 +70,7 @@ class ProjectInformationController extends Controller
         // Other fields
         $data['banner_heading'] = $request->banner_heading;
         $data['banner_description'] = $request->banner_description;
+        $data['category_id'] = $request->category_id;
         $data['description'] = $request->description;
         $data['heading'] = $request->heading;
         $data['more_description'] = $request->more_description;
@@ -76,7 +84,9 @@ class ProjectInformationController extends Controller
     public function edit($id)
     {
         $project_detail = ProjectInformation::findOrFail($id);
-        return view('backend.our-project.project-information.edit', compact('project_detail'));
+          $categories = OurProjectDetail::all();
+
+        return view('backend.our-project.project-information.edit', compact('project_detail','categories'));
     }
 
     public function update(Request $request, $id)
@@ -86,6 +96,7 @@ class ProjectInformationController extends Controller
         $request->validate([
             'banner_heading' => 'required|string|max:255',
             'banner_description' => 'required|string',
+            'category_id' => 'required|exists:our_project_categories,id',
             'description' => 'required|string',
             'heading' => 'required|string|max:255',
             'more_description' => 'required|string',

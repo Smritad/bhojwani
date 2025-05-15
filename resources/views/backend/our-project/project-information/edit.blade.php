@@ -101,7 +101,18 @@
         </div>
     </div>
 </div>
-
+<!-- Category -->
+    <div class="mb-3">
+        <label>Category<span class="txt-danger">*</span></label>
+        <select name="category_id" class="form-control" required>
+    @foreach($categories as $cat)
+        <option value="project_heading{{ $cat->id }}" {{ $project_detail->category_id == $cat->id ? 'selected' : '' }}>
+            {{ $cat-> }}
+        </option>
+    @endforeach
+</select>
+<br>
+    </div>
     <!-- Description Section -->
     <div class="card mb-4">
         <div class="card-header bg-primary text-white">Description Section</div>

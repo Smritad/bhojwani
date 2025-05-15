@@ -109,76 +109,33 @@
                 }
             }
         }'>
-                    <div class="item">
-                        <div class="project-one__item">
-                            <div class="project-one__item__image">
-                                <img src="assets/images/projects/p1.webp" alt="project">
-                            </div>
-
-                            <div class="project-one__item__info">
-                                <div class="project-one__item__bg">
-                                    <h4 class="project-one__item__heading"><a href="portfolio-details.html">The West Ford</a></h4>
-                                    <strong class="project-one__item__text">2 BHK & 3 BHK Residences <span>Location: Pune</span></strong>
-                                    <a href="portfolio-details.html" class="project-one__item__right-arrow">
-                                        <i class="icon-arrow-small-right"></i>
-                                    </a>
+                    @foreach($projectdetails as $project)
+                        <div class="item">
+                            <div class="project-one__item">
+                                <div class="project-one__item__image">
+                                    <img src="{{ asset('bhojwani/project/project_images/' . $project->project_image) }}" alt="project">
+                                </div>
+                                <div class="project-one__item__info">
+                                    <div class="project-one__item__bg">
+                                        <h4 class="project-one__item__heading">
+                                               <a href="{{ route('project.details', ['category_slug' => $project->category_slug, 'project_slug' => $project->slug]) }}">
+                                                    {{ $project->project_heading }}
+                                                </a>            
+                                            </h4>                 
+                                        <strong class="project-one__item__text">
+                                            {{ $project->title ?? 'Default Title' }}
+                                            <span>Location: {{ $project->location ?? 'Default Title' }}</span>
+                                        </strong>
+                                            <a href="{{ route('project.details', ['category_slug' => $project->category_slug, 'project_slug' => $project->slug]) }}" class="project-one__item__right-arrow">
+                                                <i class="icon-arrow-small-right"></i>
+                                            </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div><!-- /.item -->
-                                        <div class="item">
-                        <div class="project-one__item">
-                            <div class="project-one__item__image">
-                                <img src="assets/images/projects/p2.webp" alt="project">
-                            </div>
+                    @endforeach
 
-                            <div class="project-one__item__info">
-                                <div class="project-one__item__bg">
-
-                                    <h4 class="project-one__item__heading"><a href="portfolio-details.html">The West Ford</a></h4>
-                                    <strong class="project-one__item__text">2 BHK & 3 BHK Residences <span>Location: Pune</span></strong>
-                                    <a href="portfolio-details.html" class="project-one__item__right-arrow">
-                                        <i class="icon-arrow-small-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.item -->
-                                        <div class="item">
-                        <div class="project-one__item">
-                            <div class="project-one__item__image">
-                                <img src="assets/images/projects/p3.webp" alt="project">
-                            </div>
-
-                            <div class="project-one__item__info">
-                                <div class="project-one__item__bg">
-
-                                    <h4 class="project-one__item__heading"><a href="portfolio-details.html">The West Ford</a></h4>
-                                    <strong class="project-one__item__text">2 BHK & 3 BHK Residences <span>Location: Pune</span></strong>
-                                    <a href="portfolio-details.html" class="project-one__item__right-arrow">
-                                        <i class="icon-arrow-small-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.item -->
-                    <div class="item">
-                        <div class="project-one__item">
-                            <div class="project-one__item__image">
-                                <img src="assets/images/projects/p4.webp" alt="project">
-                            </div>
-
-                            <div class="project-one__item__info">
-                                <div class="project-one__item__bg">
-                                    <h4 class="project-one__item__heading"><a href="portfolio-details.html">The West Ford</a></h4>
-                                    <strong class="project-one__item__text">2 BHK & 3 BHK Residences <span>Location: Pune</span></strong>
-                                    <a href="portfolio-details.html" class="project-one__item__right-arrow">
-                                        <i class="icon-arrow-small-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.item -->
+                     
 
                 </div>
             </div>
