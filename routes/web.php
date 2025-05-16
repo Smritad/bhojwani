@@ -18,6 +18,7 @@ use App\Http\Controllers\Backend\Home\OurProjectController;
 use App\Http\Controllers\Backend\Home\OurProjectDetailsController;
 use App\Http\Controllers\Backend\Home\ProjectInformationController;
 use App\Http\Controllers\Backend\Home\ProjectAmenityController;
+use App\Http\Controllers\Backend\Home\SkyhighLuxuryController;
 
 
 
@@ -78,6 +79,9 @@ Route::resource('projectinformation-details', ProjectInformationController::clas
 
 // ==== Manage our project section 
 Route::resource('projectamenity-details', ProjectAmenityController::class);
+
+// ==== Manage our Sky High Luxury section 
+Route::resource('skyhighluxury-details', SkyhighLuxuryController::class);
 //================================================================================================== frontend
 Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHistoryMiddleware::class]],function(){
 

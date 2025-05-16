@@ -69,6 +69,7 @@
                     <li><a href="{{ route('ourproject-details.index') }}" class="{{ request()->routeIs('ourproject-details.index') ? 'active' : '' }}">Our Project Details</a></li>
                     <li><a href="{{ route('projectinformation-details.index') }}" class="{{ request()->routeIs('projectinformation-details.index') ? 'active' : '' }}">Our Project Information</a></li>
                     <li><a href="{{ route('projectamenity-details.index') }}" class="{{ request()->routeIs('projectamenity-details.index') ? 'active' : '' }}">Our Project Amenity</a></li>
+                    <li><a href="{{ route('skyhighluxury-details.index') }}" class="{{ request()->routeIs('skyhighluxury-details.index') ? 'active' : '' }}">Sky High Luxury</a></li>
 
                   </ul>
                 </li>
