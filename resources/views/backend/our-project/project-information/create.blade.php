@@ -64,6 +64,16 @@
                             <div class="card mb-4">
                                 <div class="card-header bg-primary text-white">Banner Information</div>
                                 <div class="card-body">
+                                    <!-- Project Category -->
+    <div class="mb-3 col-xxl-4 col-sm-12">
+        <label class="form-label" for="category_id">Project Name <span class="txt-danger">*</span></label>
+        <select name="category_id" id="category_id" class="form-control" required>
+            <option value="">Select Project Name</option>
+            @foreach ($categories as $cat)
+                <option value="{{ $cat->id }}">{{ $cat->project_heading}}</option>
+            @endforeach
+        </select>
+    </div>
                                     <div class="mb-3">
                                         <label for="banner_image" class="form-label required">Banner Images</label>
                                         <input type="file" class="form-control" placeholder="Choose Multiple Image" id="banner_image" name="banner_image[]" multiple required>
@@ -79,16 +89,7 @@
                                     </div>
                                 </div>
                             </div>
-<!-- Project Category -->
-    <div class="mb-3 col-xxl-4 col-sm-12">
-        <label class="form-label" for="category_id">Project Category <span class="txt-danger">*</span></label>
-        <select name="category_id" id="category_id" class="form-control" required>
-            <option value="">Select Category</option>
-            @foreach ($categories as $cat)
-                <option value="{{ $cat->id }}">{{ $cat->project_heading}}</option>
-            @endforeach
-        </select>
-    </div>
+
                             <!-- Description Section -->
                             <div class="card mb-4">
                                 <div class="card-header bg-primary text-white">Description Section</div>

@@ -109,8 +109,10 @@
         </section>
         <!-- Service Start -->
         <section class="service-one service-one--three service-one--page2">
+            @foreach ($amenitiesData as $amenity)
+
             <div class="container">
-                <p class="text-center">Rooftop retreats, designed for sophisticated gatherings and serene escapes, set a new standard for luxurious living in Pune.</p>
+                <p class="text-center">{!! $amenity['description'] !!}</p>
                 <div class="aminities-sec wallpi-owl__carousel wallpi-owl__carousel--with-shadow wallpi-owl__carousel--basic-nav owl-carousel" data-owl-options='{
             "items": 1,
             "margin": 0,
@@ -134,610 +136,221 @@
                 }
             }
         }'>
-                    <div class="item">
-                        <div class="service-block">
-                            <div class="inner-box wow fadeIn" data-wow-delay="100ms">
-                                <div class="icon-box wow fadeInUp"><img src="assets/images/icon/parking.svg" /></div>
-                                <div class="content-box">
-                                    <h4 class="title">6 floor parking + 24 floors residences</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="service-block">
-                            <div class="inner-box wow fadeIn" data-wow-delay="100ms">
-                                <div class="icon-box wow fadeInUp"><img src="assets/images/icon/apartment.svg" /></div>
-                                <div class="content-box">
-                                    <h4 class="title">3 and 4 bhk luxe apartments</h4>
-                                </div>
-                            </div>
-                        </div>
+                    @foreach (array_chunk($amenity['pairs'], 2) as $chunk)
+    <div class="item">
+        @foreach ($chunk as $pair)
+            <div class="service-block">
+                <div class="inner-box wow fadeIn" data-wow-delay="100ms">
+                    <div class="icon-box wow fadeInUp">
+                        <img src="{{ asset('uploads/amenity/thumbnail/' . $pair['image']) }}" alt="{{ $pair['title'] }}" />
                     </div>
-                    <div class="item">
-                        <div class="service-block">
-                            <div class="inner-box wow fadeIn" data-wow-delay="100ms">
-                                <div class="icon-box wow fadeInUp"><img src="assets/images/icon/rooftop.svg" /></div>
-                                <div class="content-box">
-                                    <h4 class="title">Rooftop retreat</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="service-block">
-                            <div class="inner-box wow fadeIn" data-wow-delay="100ms">
-                                <div class="icon-box wow fadeInUp"><img src="assets/images/icon/park.svg" /></div>
-                                <div class="content-box">
-                                    <h4 class="title">Access to Linear garden</h4>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="content-box">
+                        <h4 class="title">{{ $pair['title'] }}</h4>
                     </div>
-                    <!-- /.item -->
-                    <div class="item">
-                        <div class="service-block">
-                            <div class="inner-box wow fadeIn" data-wow-delay="100ms">
-                                <div class="icon-box wow fadeInUp"><img src="assets/images/icon/network.svg" /></div>
-                                <div class="content-box">
-                                    <h4 class="title">Great connectivity</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="service-block">
-                            <div class="inner-box wow fadeIn" data-wow-delay="100ms">
-                                <div class="icon-box wow fadeInUp"><img src="assets/images/icon/elevator.svg" /></div>
-                                <div class="content-box">
-                                    <h4 class="title">Designer lobby with lifts </h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="service-block">
-                            <div class="inner-box wow fadeIn" data-wow-delay="100ms">
-                                <div class="icon-box wow fadeInUp"><img src="assets/images/icon/parking.svg" /></div>
-                                <div class="content-box">
-                                    <h4 class="title">6 floor parking + 24 floors residences</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="service-block">
-                            <div class="inner-box wow fadeIn" data-wow-delay="100ms">
-                                <div class="icon-box wow fadeInUp"><img src="assets/images/icon/apartment.svg" /></div>
-                                <div class="content-box">
-                                    <h4 class="title">3 and 4 bhk luxe apartments</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.item -->
-                    <div class="item">
-                        <div class="service-block">
-                            <div class="inner-box wow fadeIn" data-wow-delay="100ms">
-                                <div class="icon-box wow fadeInUp"><img src="assets/images/icon/rooftop.svg" /></div>
-                                <div class="content-box">
-                                    <h4 class="title">Rooftop retreat</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="service-block">
-                            <div class="inner-box wow fadeIn" data-wow-delay="100ms">
-                                <div class="icon-box wow fadeInUp"><img src="assets/images/icon/network.svg" /></div>
-                                <div class="content-box">
-                                    <h4 class="title">Great connectivity</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.item -->
-                    <div class="item">
-                        <div class="service-block">
-                            <div class="inner-box wow fadeIn" data-wow-delay="100ms">
-                                <div class="icon-box wow fadeInUp"><img src="assets/images/icon/park.svg" /></div>
-                                <div class="content-box">
-                                    <h4 class="title">Access to Linear garden</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="service-block">
-                            <div class="inner-box wow fadeIn" data-wow-delay="100ms">
-                                <div class="icon-box wow fadeInUp"><img src="assets/images/icon/network.svg" /></div>
-                                <div class="content-box">
-                                    <h4 class="title">Great connectivity</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.item -->
                 </div>
             </div>
+        @endforeach
+    </div>
+@endforeach
+
+                   
+                </div>
+            </div>
+                    @endforeach
+
         </section>
         <!-- Service End -->
 
-        <section class="portfolio-details">
-            <div class="container">
-                <div class="row">
-
-                    <div class="portfolio-details__content">
-                        <div class="bg1">
-                            <div class="sec-title">
-                                <h2 class="sec-title__title">Sky High Luxury</h2>
+       <section class="portfolio-details">
+    <div class="container">
+        <div class="row">
+            <div class="portfolio-details__content">
+                <div class="bg1">
+                    <div class="sec-title">
+                        
+                        <h2 class="sec-title__title">{{ $skyHigh->heading ?? '' }}</h2>
+                    </div>
+                    <p>{!! $skyHigh->description ?? '' !!}</p>
+                    <div class="space12"></div>
+                    <div class="aminities-sec wallpi-owl__carousel wallpi-owl__carousel--with-shadow wallpi-owl__carousel--basic-nav owl-carousel" data-owl-options='{
+                        "items": 1,
+                        "margin": 0,
+                        "loop": true,
+                        "smartSpeed": 700,
+                        "nav": true,
+                        "navText": ["<span class=\"icon-left-arrow1\"></span>","<span class=\"icon-right-arrow1\"></span>"],
+                        "dots": true,
+                        "autoplay": false,
+                        "responsive": {
+                            "0": { "items": 1 },
+                            "992": { "items": 2, "margin": 15 },
+                            "1200": { "items": 3, "margin": 30 }
+                        }
+                    }'>
+                        @foreach(array_chunk($svgPairs, 4) as $chunk)
+                            <div class="item">
+                                @foreach($chunk as $pair)
+                                    <div class="list-box">
+                                        <div class="icon">
+                                            <img src="{{ asset('uploads/skyhighluxury/' . $pair['image']) }}" alt="{{ $pair['title'] }}" />
+                                        </div>
+                                        <div class="text">
+                                            <p>{{ $pair['title'] }}</p>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
-                            <p>A world of leisure and entertainment at The Westford Luxe's rooftop oasis. From sunset cocktails to stargazing nights, every experience is elevated to new heights.  </p>
-                            <div class="space12"></div>
-                            <div class="aminities-sec wallpi-owl__carousel wallpi-owl__carousel--with-shadow wallpi-owl__carousel--basic-nav owl-carousel" data-owl-options='{
-            "items": 1,
-            "margin": 0,
-            "loop": true,
-            "smartSpeed": 700,
-            "nav": true,
-            "navText": ["<span class=\"icon-left-arrow1\"></span>","<span class=\"icon-right-arrow1\"></span>"],
-            "dots": true,
-            "autoplay": false,
-            "responsive": {
-                "0": {
-                    "items": 1
-                },
-                "992": {
-                    "items": 2,
-                    "margin": 15
-                },
-                "1200": {
-                    "items": 3,
-                    "margin": 30
-                }
-            }
-        }'>
-                    <div class="item">
-                                     <div class="list-box">
-                                        <div class="icon">
-                                            <img src="assets/images/icon/toboggan.svg" />
-
-                                        </div>
-                                        <div class="text">
-                                            <p>Children Play Area</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="list-box">
-                                        <div class="icon">
-                                            <img src="assets/images/icon/swimming-pool.svg" />
-
-                                        </div>
-                                        <div class="text">
-                                            <p>Swimming Pool  </p>
-                                        </div>
-                                    </div>
-                                    <div class="list-box">
-                                        <div class="icon">
-                                            <img src="assets/images/icon/trees.svg" />
-
-                                        </div>
-                                        <div class="text">
-                                            <p>Garden  </p>
-                                        </div>
-                                    </div>
-                                    <div class="list-box">
-                                        <div class="icon">
-                                            <img src="assets/images/icon/billiard.svg" />
-
-                                        </div>
-                                        <div class="text">
-                                            <p>Multi-Purpose Indoor Games Room  </p>
-                                        </div>
-                                    </div>
+                        @endforeach
                     </div>
-                                        <div class="item">
-                                                                         <div class="list-box">
-                                        <div class="icon">
-                                            <img src="assets/images/icon/development.svg" />
-
-                                        </div>
-                                        <div class="text">
-                                            <p>Coworking Space  </p>
-                                        </div>
-                                    </div>
-                                    <div class="list-box">
-                                        <div class="icon">
-                                            <img src="assets/images/icon/gym.svg" />
-
-                                        </div>
-                                        <div class="text">
-                                            <p>Gym</p>
-                                        </div>
-                                    </div>
-                                                                        <div class="list-box">
-                                        <div class="icon">
-                                            <img src="assets/images/icon/coffee.svg" />
-                                        </div>
-                                        <div class="text">
-                                            <p>Coffee House  </p>
-                                        </div>
-                                    </div>
-                                                                        <div class="list-box">
-                                        <div class="icon">
-                                            <img src="assets/images/icon/television.svg" />
-
-                                        </div>
-                                        <div class="text">
-                                            <p>Entertainment Lounge  </p>
-                                        </div>
-                                    </div>
-                    </div>
-                                                        <div class="item">
-                                                                 <div class="list-box">
-                                        <div class="icon">
-                                            <img src="assets/images/icon/open-book.svg" />
-
-                                        </div>
-                                        <div class="text">
-                                            <p>Library </p>
-                                        </div>
-                                    </div>      
-                                    <div class="list-box">
-                                        <div class="icon">
-                                            <img src="assets/images/icon/kitchen.svg" />
-
-                                        </div>
-                                        <div class="text">
-                                            <p>Indoor & Outdoor Function area with Kitchen</p>
-                                        </div>
-                                    </div>  
-                                    <div class="list-box">
-                                        <div class="icon">
-                                            <img src="assets/images/icon/mace.svg" />
-                                        </div>
-                                        <div class="text">
-                                            <p>Multi-purpose Court</p>
-                                        </div>
-                                    </div> 
-                                     <div class="list-box">
-                                        <div class="icon">
-                                            <img src="assets/images/icon/old-man.svg" />
-                                        </div>
-                                        <div class="text">
-                                            <p>Senior Citizen Area  </p>
-                                        </div>
-                                    </div>
-                    </div>
-                                                                            <div class="item">
-                                                                 <div class="list-box">
-                                        <div class="icon">
-                                            <img src="assets/images/icon/open-book.svg" />
-
-                                        </div>
-                                        <div class="text">
-                                            <p>Library </p>
-                                        </div>
-                                    </div>      
-                                    <div class="list-box">
-                                        <div class="icon">
-                                            <img src="assets/images/icon/kitchen.svg" />
-
-                                        </div>
-                                        <div class="text">
-                                            <p>Indoor & Outdoor Function area with Kitchen</p>
-                                        </div>
-                                    </div>  
-                                    <div class="list-box">
-                                        <div class="icon">
-                                            <img src="assets/images/icon/mace.svg" />
-                                        </div>
-                                        <div class="text">
-                                            <p>Multi-purpose Court</p>
-                                        </div>
-                                    </div> 
-                                     <div class="list-box">
-                                        <div class="icon">
-                                            <img src="assets/images/icon/old-man.svg" />
-                                        </div>
-                                        <div class="text">
-                                            <p>Senior Citizen Area  </p>
-                                        </div>
-                                    </div>
-                    </div>
-                                                                            <div class="item">
-                                                                 <div class="list-box">
-                                        <div class="icon">
-                                            <img src="assets/images/icon/open-book.svg" />
-
-                                        </div>
-                                        <div class="text">
-                                            <p>Library </p>
-                                        </div>
-                                    </div>      
-                                    <div class="list-box">
-                                        <div class="icon">
-                                            <img src="assets/images/icon/kitchen.svg" />
-
-                                        </div>
-                                        <div class="text">
-                                            <p>Indoor & Outdoor Function area with Kitchen</p>
-                                        </div>
-                                    </div>  
-                                    <div class="list-box">
-                                        <div class="icon">
-                                            <img src="assets/images/icon/mace.svg" />
-                                        </div>
-                                        <div class="text">
-                                            <p>Multi-purpose Court</p>
-                                        </div>
-                                    </div> 
-                                     <div class="list-box">
-                                        <div class="icon">
-                                            <img src="assets/images/icon/old-man.svg" />
-                                        </div>
-                                        <div class="text">
-                                            <p>Senior Citizen Area  </p>
-                                        </div>
-                                    </div>
-                    </div>
-                                                                            <div class="item">
-                                                                 <div class="list-box">
-                                        <div class="icon">
-                                            <img src="assets/images/icon/open-book.svg" />
-
-                                        </div>
-                                        <div class="text">
-                                            <p>Library </p>
-                                        </div>
-                                    </div>      
-                                    <div class="list-box">
-                                        <div class="icon">
-                                            <img src="assets/images/icon/kitchen.svg" />
-
-                                        </div>
-                                        <div class="text">
-                                            <p>Indoor & Outdoor Function area with Kitchen</p>
-                                        </div>
-                                    </div>  
-                                    <div class="list-box">
-                                        <div class="icon">
-                                            <img src="assets/images/icon/mace.svg" />
-                                        </div>
-                                        <div class="text">
-                                            <p>Multi-purpose Court</p>
-                                        </div>
-                                    </div> 
-                                     <div class="list-box">
-                                        <div class="icon">
-                                            <img src="assets/images/icon/old-man.svg" />
-                                        </div>
-                                        <div class="text">
-                                            <p>Senior Citizen Area  </p>
-                                        </div>
-                                    </div>
-                    </div>
-                </div>
-                            <div class="row">
-                              
-                                <div class="col-lg-4 col-md-4">
-
-                                   
-                                    
-                                    
-                                   
-                                </div>
-                            </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4">
+                            <!-- Empty column as per original -->
                         </div>
-
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
+
         <section class="video">
-            <div class="container">
-                <div class="sec-title">
-                    <h2 class="sec-title__title">Walkthrough </h2>
+    <div class="container">
+        <div class="sec-title">
+            <h2 class="sec-title__title">Walkthrough</h2>
+        </div>
+        <div class="row">
+            <div class="bg1">
+                <div class="space32"></div>
+                <div class="vide-images">
+                    <div class="img1">
+                        <img src="{{ asset('uploads/projectwalkthrough/' . $backgroundImage) }}" alt="housebox">
+                    </div>
+                    @if(!empty($videoUrl))
+                        <a href="{{ $videoUrl }}" class="popup-youtube">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6 20.1957V3.80421C6 3.01878 6.86395 2.53993 7.53 2.95621L20.6432 11.152C21.2699 11.5436 21.2699 12.4563 20.6432 12.848L7.53 21.0437C6.86395 21.46 6 20.9812 6 20.1957Z"></path>
+                            </svg>
+                        </a>
+                    @endif
                 </div>
-                <div class="row">
-                    <div class="bg1">
-                        <div class="space32"></div>
-                        <div class="vide-images">
-                            <div class="img1">
-                                <img src="assets/images/projects/gallery/1.webp" alt="housebox">
-                            </div>
-                            <a href="https://www.youtube.com/watch?v=HwaaVa8-Cw0" class="popup-youtube">
+            </div>
+        </div>
+    </div>
+</section>
+
+       <section class="pdf-sec">
+    <div class="container">
+        <div class="row">
+            @foreach($pdfData as $item)
+                <div class="col-lg-3">
+                    <div class="download-box">
+                        <h3>{{ $item['heading'] }}</h3>
+                        <div class="space28"></div>
+                        <div class="download">
+                            <a href="{{ asset('uploads/projectwalkthrough/' . $item['pdf']) }}" target="_blank">
+                                <span>
+                                    <img src="https://housebox-html-demo.vercel.app/assets/img/icons/pdf1.svg" alt="pdf-icon">
+                                </span>
+                                Download Now
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M6 20.1957V3.80421C6 3.01878 6.86395 2.53993 7.53 2.95621L20.6432 11.152C21.2699 11.5436 21.2699 12.4563 20.6432 12.848L7.53 21.0437C6.86395 21.46 6 20.9812 6 20.1957Z"></path>
+                                    <path d="M13 10H18L12 16L6 10H11V3H13V10ZM4 19H20V12H22V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V12H4V19Z"></path>
                                 </svg>
                             </a>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <section class="pdf-sec">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="download-box">
-                            <h3>Floor Plan</h3>
-                            <div class="space28"></div>
-                            <div class="download">
-                                <a href="assets/images/pdf/floor-plan.pdf" target="_blank"><span><img src="https://housebox-html-demo.vercel.app/assets/img/icons/pdf1.svg" alt="housebox"></span>Download Now <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M13 10H18L12 16L6 10H11V3H13V10ZM4 19H20V12H22V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V12H4V19Z"></path>
-          </svg></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="download-box">
-                            <h3>Brochure</h3>
-                            <div class="space28"></div>
-                            <div class="download">
-                                <a href="assets/images/pdf/Brochure.pdf" target="_blank"><span><img src="https://housebox-html-demo.vercel.app/assets/img/icons/pdf1.svg" alt="housebox"></span>Download Now <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M13 10H18L12 16L6 10H11V3H13V10ZM4 19H20V12H22V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V12H4V19Z"></path>
-          </svg></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="download-box">
-                            <h3>Plans</h3>
-                            <div class="space28"></div>
-                            <div class="download">
-                                <a href="#" target="_blank"><span><img src="https://housebox-html-demo.vercel.app/assets/img/icons/pdf1.svg" alt="housebox"></span>Download Now <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M13 10H18L12 16L6 10H11V3H13V10ZM4 19H20V12H22V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V12H4V19Z"></path>
-          </svg></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="download-box">
-                            <h3>Isometrics</h3>
-                            <div class="space28"></div>
-                            <div class="download">
-                                <a href="#" target="_blank"><span><img src="https://housebox-html-demo.vercel.app/assets/img/icons/pdf1.svg" alt="housebox"></span>Download Now <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M13 10H18L12 16L6 10H11V3H13V10ZM4 19H20V12H22V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V12H4V19Z"></path>
-          </svg></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="cs_page_heading cs_primary_bg cs_bg_filed cs_center" data-src="assets/images/projects/p4.webp">
-        </section>
+            @endforeach
+        </div>
+    </div>
+</section>
+<section class="cs_page_heading cs_primary_bg cs_bg_filed cs_center"
+         data-src="{{ asset('uploads/projectwalkthrough/' . $backgroundImage) }}">
+</section>
+
         <section class="about-three">
-            <div class="about-two__shapeleft" style="background-image: url('assets/images/shapes/about-shape2-3.png');"></div>
-            <div class="about-two__shaperight" style="background-image: url('assets/images/shapes/about-shape2-4.webp');"></div>
-            <div class="container">
-                <div class="sec-title">
-                    <h2 class="sec-title__title">Connectivity </h2>
+    <div class="about-two__shapeleft" style="background-image: url('assets/images/shapes/about-shape2-3.png');"></div>
+    <div class="about-two__shaperight" style="background-image: url('assets/images/shapes/about-shape2-4.webp');"></div>
+    <div class="container">
+        <div class="sec-title">
+            <h2 class="sec-title__title">{{ $connectivityData['section1_heading'] }}</h2>
+        </div>
+        <p>{{ $connectivityData['section1_description'] }}</p>
+
+        <div class="row">
+            @foreach($connectivityData['section2_headings'] as $index => $heading)
+                @php
+                    $icon = $connectivityData['section2_icons'][$index] ?? '';
+                    $titles = explode(',', $connectivityData['section2_project_titles'][$index] ?? '');
+                    $matters = explode(',', $connectivityData['section2_project_matters'][$index] ?? '');
+                @endphp
+
+                <div class="col-md-4 service-details__feature__col">
+                    <div class="service-details__feature__titlewrap d-flex align-items-center">
+                        <img src="{{ asset('uploads/connectivity/' . $icon) }}" alt="icon" class="me-2" style="width: 40px;" />
+                        <h6 class="service-details__feature__title">{{ $heading }}</h6>
+                    </div>
+
+                    <ul class="list-unstyled service-details__featurelist">
+                        @foreach($titles as $i => $title)
+                            <li>{{ trim($title) }} –
+                                <b>{{ trim($matters[$i] ?? '') }}</b>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
-                <p>The Westford Luxe in Pimple Saudagar offers unparalleled connectivity to Pune's finest attractions, including shopping centers,  restaurants, schools, and hospitals. Live life to the fullest, with everything you need just moments away.
-                    </p>
-                <div class="row">
+            @endforeach
+        </div>
+    </div>
+</section>
 
-                    <div class="col-md-4 service-details__feature__col">
-                        <div class="service-details__feature__titlewrap d-flex align-items-center">
-                            <img src="assets/images/icon/health-insurance.svg" />
-                            <h6 class="service-details__feature__title">Healthcare</h6>
-                        </div>
-                        <ul class="list-unstyled service-details__featurelist">
-                            <li>Lotus Multispeciality Hospital – <b>86m</b></li>
-                            <li>Jeevan Jyoti Super Speciality Hospital – <b>270m</b></li>
-                            <li>ONP Leela Hospital – <b>600m</b></li>
-                            <li>Cloudnine Hospital – <b>600m</b></li>
-                            <li>Jupiter Hospital – <b>6.5km</b></li>
+      <section class="slider">
+    <div class="container">
+        <div class="sec-title">
+            <h2 class="sec-title__title">{{ $galleryEntry->section1_heading ?? '' }}</h2>
+        </div>
+        <div class="property-details-slider owl-carousel">
+            @foreach ($galleryImages as $img)
+                <div class="img1">
+                    <img src="{{ $img }}" alt="Gallery Image">
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+
+       <section class="location">
+    <div class="container">
+        <div class="row">
+            <div class="bg1">
+                <h3>{{ $mapData->heading ?? '' }}</h3>
+                <div class="space32"></div>
+                <div class="map-section">
+                    <iframe src="{{ $mapData->map_url ?? '' }}"
+                        width="100%" height="350" style="border:0;" allowfullscreen=""
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                    <div class="space12"></div>
+                    <div class="list">
+                        <ul>
+                            <li>
+                                <span>Site Address:</span>
+                                <div>{{ $mapData->site_title ?? '' }}</div>
+                            </li>
                         </ul>
-                    </div>
-
-                    <div class="col-md-4 service-details__feature__col">
-                        <div class="service-details__feature__titlewrap d-flex align-items-center">
-                            <img src="assets/images/icon/graduation-cap.svg" />
-                            <h6 class="service-details__feature__title">Education</h6>
-                        </div>
-                        <ul class="list-unstyled service-details__featurelist">
-                            <li>Challenger Public School - <b>140m </b></li>
-                            <li> G. K. Gurukul - <b>750m </b></li>
-                            <li>VIBGYOR Rise CBSE School - <b>1.3km </b></li>
-
-                            <li>Wisdom World School - <b>1.5km </b></li>
-                            <li>Symbiosis, Lavale - <b> 9.8km </b></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4 service-details__feature__col">
-                        <div class="service-details__feature__titlewrap d-flex align-items-center">
-                            <img src="assets/images/icon/shopping-cart.svg" />
-                            <h6 class="service-details__feature__title">Retail & Entertainment  </h6>
-                        </div>
-                        <ul class="list-unstyled service-details__featurelist">
-                            <li>Spot18 – <b>1km</b></li>
-
-                            <li>Westend Mall – <b>6km</b></li>
-
-                            <li>Phoenix Mall of the Millennium – <b>6.4km</b></li>
-
-                            <li>Balewadi High Street – <b>8km</b></li>
-
-                            <li>The Pavilion Mall – <b>11km</b></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4 service-details__feature__col">
-                        <div class="service-details__feature__titlewrap d-flex align-items-center">
-                            <img src="assets/images/icon/shopping-cart-1.svg" />
-                            <h6 class="service-details__feature__title">Supermarkets   </h6>
-                        </div>
-                        <ul class="list-unstyled service-details__featurelist">
-                            <li>StarBazaar – <b>1.4km</b></li>
-
-                            <li>eliance SMART – <b>1.5km</b>
-                                <li>
-
-                                    <li>Nature’s Basket – <b>6km</b></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4 service-details__feature__col">
-                        <div class="service-details__feature__titlewrap d-flex align-items-center">
-                            <img src="assets/images/icon/connections.svg" />
-                            <h6 class="service-details__feature__title">Connectivity  </h6>
-                        </div>
-                        <ul class="list-unstyled service-details__featurelist">
-                            <li>Chinchwad Railway Station – <b>5.6km</b></li>
-
-                            <li>Pune-Mumbai Expressway – <b>5km</b></li>
-
-                            <li>Pune International Airport – <b>12km</b></li>
+                        <ul class="m-0">
+                            <li>
+                                <span>Corporate Address:</span>
+                                <div>{{ $mapData->site_address ?? '' }}</div>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
-        </section>
-        <section class="slider">
-            <div class="container">
-                <div class="sec-title">
-                    <h2 class="sec-title__title">Gallery</h2>
-                </div>
-                <div class="property-details-slider owl-carousel">
-                    <div class="img1">
-                        <img src="assets/images/projects/gallery/1-1.webp" alt="housebox">
-                    </div>
-                    <div class="img1">
-                        <img src="assets/images/projects/gallery/2.webp" alt="housebox">
-                    </div>
-                    <div class="img1">
-                        <img src="assets/images/projects/gallery/3_11zon.webp" alt="housebox">
-                    </div>
-                    <div class="img1">
-                        <img src="assets/images/projects/gallery/4_11zon.webp" alt="housebox">
-                    </div>
-                    <div class="img1">
-                        <img src="assets/images/projects/gallery/5_11zon.webp" alt="housebox">
-                    </div>
+        </div>
+    </div>
+</section>
 
-                </div>
-            </div>
-        </section>
-        <section class="location">
-            <div class="container">
-                <div class="row">
-                    <div class="bg1">
-                        <h3>Map Locations</h3>
-                        <div class="space32"></div>
-                        <div class="map-section">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.444574955317!2d73.79173147519357!3d18.599063082509808!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b91e0701ce81%3A0x6499f7f8d8cdf224!2sLotus%20Multi-specialty%20Hospital!5e0!3m2!1smr!2sin!4v1744020416113!5m2!1smr!2sin"
-                            width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            <div class="space12"></div>
-                            <div class="list">
-                                <ul>
-                                    <li>
-                                        <span>Site Address:</span>
-                                        <div>Sr. No. 163/1/2, Shiv Sai Lane, Near Lotus Hospital, Pimple Saudagar, Pune - 411 027, Maharashtra, INDIA. </div>
-                                    </li>
-
-                                </ul>
-                                <ul class="m-0 ">
-                                    <li>
-                                        <span>Corporate Address:</span>
-                                        <div>Office No. 1 & 2, The Westford, Pimple Saudagar, Pune - 411 027, Maharashtra, INDIA.  </div>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
             @include('components.frontend.footer')
 <!-- The Modal -->

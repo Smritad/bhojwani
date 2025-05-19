@@ -55,6 +55,17 @@
    <form action="{{ route('projectamenity-details.update', $projectAmenity->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
+<!-- Category -->
+    <div class="mb-3">
+    <label>project Name<span class="txt-danger">*</span></label>
+    <select name="project_id" class="form-control" required>
+        @foreach($projectid as $cat)
+            <option value="{{ $cat->id }}" {{ $cat->project_id == $cat->id ? 'selected' : '' }}>
+                {{ $cat->project_heading }}
+            </option>
+        @endforeach
+    </select>
+</div>
 
                     <!-- Banner Image -->
                     <div class="mb-4">

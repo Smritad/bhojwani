@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Projectskyhighluxury;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use App\Models\OurProjectDetail;
 
 class SkyhighLuxuryController extends Controller
 {
@@ -17,47 +18,55 @@ class SkyhighLuxuryController extends Controller
 
     public function create()
     {
-        return view('backend.our-project.skyhighluxury.create');
+                        $projectid = OurProjectDetail::all();
+
+
+        return view('backend.our-project.skyhighluxury.create',compact('projectid'));
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'heading' => 'required',
-            'description' => 'required',
-            'sections.*.svg' => 'required|file|mimes:svg',
-            'sections.*.title' => 'required|string',
-        ]);
+{
+    $request->validate([
+        'project_id' => 'required|string',
+        'heading' => 'required',
+        'description' => 'required',
+        'sections.*.svg' => 'required|file|mimes:svg',
+        'sections.*.title' => 'required|string',
+    ]);
 
-        $svgFiles = [];
-        $titles = [];
+    $svgFiles = [];
+    $titles = [];
 
-        if ($request->has('sections')) {
-            foreach ($request->sections as $section) {
-                if (isset($section['svg'])) {
-                    $file = $section['svg'];
-                    $filename = time() . '_' . Str::random(10) . '.svg';
-                    $file->move(public_path('uploads/skyhighluxury'), $filename);
-                    $svgFiles[] = $filename;
-                }
-                $titles[] = $section['title'];
+    if ($request->has('sections')) {
+        foreach ($request->sections as $section) {
+            if (isset($section['svg'])) {
+                $file = $section['svg'];
+                $filename = time() . '_' . Str::random(10) . '.svg';
+                $file->move(public_path('uploads/skyhighluxury'), $filename);
+                $svgFiles[] = $filename;
             }
+
+            $titles[] = $section['title'];
         }
-
-        Projectskyhighluxury::create([
-            'heading' => $request->heading,
-            'description' => $request->description,
-            'svg_images' => implode(',', $svgFiles),
-            'titles' => implode(',', $titles),
-        ]);
-
-        return redirect()->route('skyhighluxury-details.index')->with('message', 'Amenity added successfully!');
     }
+
+    Projectskyhighluxury::create([
+        'project_id' => $request->project_id,
+        'heading' => $request->heading,
+        'description' => $request->description,
+        'svg_images' => implode(',', $svgFiles),
+        'titles' => implode(',', $titles),
+    ]);
+
+    return redirect()->route('skyhighluxury-details.index')->with('message', 'Amenity added successfully!');
+}
+
 
     public function edit($id)
     {
         $luxury = Projectskyhighluxury::findOrFail($id);
-        return view('backend.our-project.skyhighluxury.edit', compact('luxury'));
+        $projectid = OurProjectDetail::all();
+        return view('backend.our-project.skyhighluxury.edit', compact('luxury','projectid'));
     }
 
     public function update(Request $request, $id)

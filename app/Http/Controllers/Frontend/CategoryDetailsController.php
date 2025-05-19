@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\ConnectivityDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\OurProjectDetail;
 use App\Models\OurProjectCategory; 
+use App\Models\ProjectAmenity; 
+use App\Models\OurProjectBanner; 
 
 class CategoryDetailsController extends Controller
 {
@@ -15,27 +18,23 @@ class CategoryDetailsController extends Controller
     
 
     public function our_project()
-    {
-        // $bannerProject = DB::table('our_project_details')
-        //     ->where('category_id', 4)
-        //     ->first();
+{
+    // Get banners (from our_project_banners)
+    $projectsbannner = OurProjectBanner::whereNull('deleted_at')->get();
 
-        // $category = DB::table('our_project_categories')->where('id', 4)->first();
+    // Get project details with category names
+    $projects = DB::table('our_project_details')
+        ->join('our_project_categories', 'our_project_details.category_id', '=', 'our_project_categories.id')
+        ->select(
+            'our_project_details.*',
+            'our_project_categories.category_name',
+            'our_project_categories.slug as category_slug'
+        )
+        ->get();
 
-        $projects = DB::table('our_project_details')
-            ->join('our_project_categories', 'our_project_details.category_id', '=', 'our_project_categories.id')
-            // ->where('our_project_details.category_id', '=', 4)
-            ->select(
-                'our_project_details.*',
-                'our_project_categories.category_name',
-                'our_project_categories.slug as category_slug'
-            )
-            ->get();
-        // dd($projects);
-
-        return view('frontend.my-projects', compact('projects'));
-    }
-
+    // Return both variables to the view
+    return view('frontend.my-projects', compact('projects', 'projectsbannner'));
+}
 
     public function category_details($slug)
     {
@@ -93,8 +92,114 @@ class CategoryDetailsController extends Controller
         ->where('category_id', $project->id)
         ->first();
 
-    return view('frontend.all-project-listing', compact('project', 'project_info'));
+    // Step 3: Get all amenities
+    $amenitiesRaw = DB::table('project_amenities')->where('project_id', $project->id)->first();
+
+    $amenitiesData = [];
+
+    if ($amenitiesRaw) {
+        $description = $amenitiesRaw->description ?? '';
+        $titles = explode(',', $amenitiesRaw->headings ?? '');
+        $images = explode(',', $amenitiesRaw->thumbnail_images ?? '');
+
+        $pairs = [];
+        foreach ($titles as $index => $title) {
+            $pairs[] = [
+                'title' => trim($title),
+                'image' => trim($images[$index] ?? ''),
+            ];
+        }
+
+        $amenitiesData[] = [
+            'description' => $description,
+            'pairs' => $pairs,
+        ];
+    }
+
+    $skyHigh = DB::table('projectskyhighluxuries')->where('project_id', $project->id)->first();
+$svgPairs = [];
+
+if ($skyHigh) {
+    $svgTitles = explode(',', $skyHigh->titles ?? '');
+    $svgImages = explode(',', $skyHigh->svg_images ?? '');
+
+    foreach ($svgTitles as $index => $title) {
+        $svgPairs[] = [
+            'title' => trim($title),
+            'image' => trim($svgImages[$index] ?? ''),
+        ];
+    }
 }
+
+
+    // Step 5: Get project walk-through details
+$projectWalkThrough = DB::table('project_walk_throughs')->where('project_id', $project->id)->first();
+
+$pdfData = [];
+$backgroundImage = null;
+$videoUrl = null;
+
+if ($projectWalkThrough) {
+    $backgroundImage = $projectWalkThrough->background_image ?? null;
+    $videoUrl = $projectWalkThrough->video ?? null;
+
+    $headings = explode(',', $projectWalkThrough->headings ?? '');
+    $pdfs = explode(',', $projectWalkThrough->pdfs ?? '');
+
+    $count = min(count($headings), count($pdfs));
+    for ($i = 0; $i < $count; $i++) {
+        $pdfData[] = [
+            'heading' => trim($headings[$i]),
+            'pdf' => trim($pdfs[$i]),
+        ];
+    }
+}
+// step 6 for ConnectivityDetail
+$connectivity = DB::table('connectivity_details')->where('project_id', $project->id)->first();
+
+    $connectivityData = [];
+    if ($connectivity) {
+        $connectivityData['section1_heading'] = $connectivity->section1_heading ?? '';
+        $connectivityData['section1_description'] = $connectivity->section1_description ?? '';
+        $connectivityData['section2_icons'] = explode(',', $connectivity->section2_icons ?? '');
+        $connectivityData['section2_headings'] = explode(',', $connectivity->section2_headings ?? '');
+        $connectivityData['section2_project_titles'] = explode(',', $connectivity->section2_project_titles ?? '');
+        $connectivityData['section2_project_matters'] = explode(',', $connectivity->section2_project_matters ?? '');
+    }
+
+    // Step 8: Get gallery images for this project
+$galleryEntry = DB::table('gallery_images')->where('project_id', $project->id)->first();
+$galleryImages = [];
+
+if ($galleryEntry) {
+    $filenames = explode(',', $galleryEntry->images ?? '');
+    foreach ($filenames as $filename) {
+        $galleryImages[] = asset('uploads/gallery/' . trim($filename));
+    }
+}
+
+$mapData = DB::table('map_addresses')->where('project_id', $project->id)->first();
+
+    // Final: Pass all data to the view
+    return view('frontend.all-project-listing', [
+    'project' => $project,
+    'project_info' => $project_info,
+    'amenitiesData' => $amenitiesData,
+    'skyHigh' => $skyHigh,
+    'svgPairs' => $svgPairs,
+    'pdfData' => $pdfData,
+    'backgroundImage' => $backgroundImage,
+    'videoUrl' => $videoUrl,
+    'connectivityData' => $connectivityData,
+        'galleryEntry' => $galleryEntry,
+    'galleryImages' => $galleryImages,
+    'mapData' => $mapData,
+
+]);
+
+}
+
+
 
 
 
@@ -106,7 +211,7 @@ class CategoryDetailsController extends Controller
 public function footer(Request $request)
 
 {
-    return view('components.frontend.footer', compact());
+    return view('components.frontend.footer');
 }
 
 }

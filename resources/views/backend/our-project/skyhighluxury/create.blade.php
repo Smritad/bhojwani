@@ -62,9 +62,26 @@
                             @csrf
 
                             <!-- Section 1: Sky High Luxury Details -->
+                             
                             <div class="card mb-4">
                                 <div class="card-header"><strong>Section 1: Sky High Luxury Details</strong></div>
+
                                 <div class="card-body">
+                                    <!-- Category -->
+  <div class="mb-3">
+    <label>Project Name <span class="txt-danger">*</span></label>
+    <select name="project_id" class="form-control" required>
+        <option value="">Select Project Name</option> <!-- Default option -->
+
+        @foreach($projectid as $cat)
+            <option value="{{ $cat->id }}" 
+                {{ old('project_id', isset($selectedProjectId) ? $selectedProjectId : '') == $cat->id ? 'selected' : '' }}>
+                {{ $cat->project_heading }}
+            </option>
+        @endforeach
+    </select>
+</div>
+
                                     <div class="mb-3">
                                         <label class="form-label required">Heading</label>
                                         <input type="text" name="heading" class="form-control" required placeholder="Enter heading for the luxury details">

@@ -66,9 +66,21 @@
                                 @method('PUT')
 
                                 <!-- Section 1: Heading & Description -->
+
                                 <div class="card mb-4">
                                     <div class="card-header"><strong>Section 1: Sky High Luxury Details</strong></div>
                                     <div class="card-body">
+                                        <!-- Category -->
+    <div class="mb-3">
+    <label>project Name<span class="txt-danger">*</span></label>
+    <select name="project_id" class="form-control" required>
+        @foreach($projectid as $cat)
+            <option value="{{ $cat->id }}" {{ $cat->project_id == $cat->id ? 'selected' : '' }}>
+                {{ $cat->project_heading }}
+            </option>
+        @endforeach
+    </select>
+</div>
                                         <div class="mb-3">
                                             <label class="form-label">Heading</label>
                                             <input type="text" name="heading" class="form-control" value="{{ old('heading', $luxury->heading) }}" required placeholder="Enter section heading">

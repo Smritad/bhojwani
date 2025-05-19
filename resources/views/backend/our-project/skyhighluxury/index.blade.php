@@ -47,40 +47,42 @@
                                         <li class="breadcrumb-item">
                                             <a href="{{ route('skyhighluxury-details.index') }}">Home</a>
                                         </li>
-                                        <li class="breadcrumb-item active" aria-current="page">Project Amenities Details</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Project Sky High Luxury Details</li>
                                     </ol>
                                 </nav>
-                                <a href="{{ route('skyhighluxury-details.create') }}" class="btn btn-primary px-5 radius-30">+ Add Project Amenities Details</a>
+                                <a href="{{ route('skyhighluxury-details.create') }}" class="btn btn-primary px-5 radius-30">+ Add Project Sky High Luxury Details</a>
                             </div>
 
                             <div class="table-responsive custom-scrollbar">
                                 <table class="display" id="basic-1">
                                    <thead>
             <tr>
+                <th>#</th>
                 <th>Heading</th>
-                <th>Description</th>
-                <th>SVGs</th>
-                <th>Titles</th>
+                <!--  <th>Description</th> -->
+                <!-- <th>SVGs</th>
+                <th>Titles</th> --> 
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($luxuries as $item)
+            @foreach($luxuries as $key => $item)
                 <tr>
+                       <td>{{ $key + 1}}</td>
                     <td>{{ $item->heading }}</td>
-                    <td>{{ $item->description }}</td>
-                    <td>
+                    <!-- <td>{!!$item->description !!}</td> -->
+                    <!-- <td>
                         @foreach(explode(',', $item->svg_images) as $img)
                             <img src="{{ asset('uploads/skyhighluxury/' . $img) }}" style="height: 40px;">
                         @endforeach
-                    </td>
-                    <td>
+                    </td> -->
+                    <!-- <td>
                         <ul>
                             @foreach(explode(',', $item->titles) as $title)
                                 <li>{{ $title }}</li>
                             @endforeach
                         </ul>
-                    </td>
+                    </td> -->
                     <td>
                         <a href="{{ route('skyhighluxury-details.edit', $item->id) }}" class="btn btn-primary btn-sm">Edit</a>
                         <form method="POST" action="{{ route('skyhighluxury-details.destroy', $item->id) }}" style="display:inline;">

@@ -51,6 +51,21 @@
                                                     @csrf
 
                                                     {{-- SECTION 1: Banner Image + Description --}}
+                                                    <!-- Project Category -->
+    <div class="mb-3">
+    <label>Project Name <span class="txt-danger">*</span></label>
+    <select name="project_id" class="form-control" required>
+        <option value="">Select Project Name</option> <!-- Default option -->
+
+        @foreach($projectid as $cat)
+            <option value="{{ $cat->id }}" 
+                {{ old('project_id', isset($selectedProjectId) ? $selectedProjectId : '') == $cat->id ? 'selected' : '' }}>
+                {{ $cat->project_heading }}
+            </option>
+        @endforeach
+    </select>
+</div>
+
                                                     <div class="mb-4">
                                                         <label for="banner_image" class="form-label">Background Image <span class="text-danger">*</span></label>
                                                         <input class="form-control" type="file" name="banner_image" id="banner_image" required onchange="previewBanner(event)">

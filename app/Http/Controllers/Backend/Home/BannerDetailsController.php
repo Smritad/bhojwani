@@ -35,55 +35,33 @@ class BannerDetailsController extends Controller
     }
 
 
-  public function store(Request $request)
+
+public function store(Request $request)
 {
-    // Validate the form inputs
+    // Validate input
     $request->validate([
-        'banner_image.*' => 'required|image|max:5120',  // Allow multiple banner images
+        'banner_image' => 'required|image|max:5120', // single image
         'banner_heading' => 'required|string|max:255',
-        'banner_description' => 'required|string',
-        'description_image' => 'required|image',
-        'description' => 'required|string',
-        'heading' => 'required|string|max:255',
-        'more_description' => 'required|string',
-        'more_image' => 'required|image'
     ]);
 
     $data = [];
 
-    // Handling multiple banner images
+    // Handle single image upload
     if ($request->hasFile('banner_image')) {
-        $bannerImageNames = [];
-        foreach ($request->file('banner_image') as $file) {
-            $filename = Str::random(40) . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('bhojwani/project_information/banner'), $filename);
-            $bannerImageNames[] = $filename;
-        }
-        $data['banner_images'] = json_encode($bannerImageNames); // Store images as a JSON array
+        $file = $request->file('banner_image');
+        $filename = Str::random(40) . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('/bhojwani/home/banner'), $filename);
+        $data['banner_images'] = $filename; // single file name
     }
 
-    // Handle other images
-    $descImage = $request->file('description_image');
-    $descImageName = Str::random(40) . '.' . $descImage->getClientOriginalExtension();
-    $descImage->move(public_path('bhojwani/project_information/project_image'), $descImageName);
-    $data['description_image'] = $descImageName;
-
-    $moreImage = $request->file('more_image');
-    $moreImageName = Str::random(40) . '.' . $moreImage->getClientOriginalExtension();
-    $moreImage->move(public_path('bhojwani/project_information/project_image'), $moreImageName);
-    $data['more_image'] = $moreImageName;
-
-    // Other form data
+    // Store other data
     $data['banner_heading'] = $request->banner_heading;
-    $data['banner_description'] = $request->banner_description;
-    $data['description'] = $request->description;
-    $data['heading'] = $request->heading;
-    $data['more_description'] = $request->more_description;
     $data['created_by'] = Auth::id();
 
+    // Save record
     BannerDetails::create($data);
 
-    return redirect()->route('projectinformation-details.index')->with('message', 'Project Information successfully added!');
+    return redirect()->route('banner-details.index')->with('message', 'Banner added successfully!');
 }
 
 

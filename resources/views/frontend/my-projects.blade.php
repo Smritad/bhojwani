@@ -10,7 +10,18 @@
         </div>
 @include('components.frontend.header')
 
-
+@foreach($projectsbannner as $banner)
+<section class="page-header">
+    <div class="page-header__bg" style="background-image: url('{{ asset('bhojwani/home/banner/' . $banner->banner_image) }}');"></div>
+    <div class="container">
+        <ul class="wallpi-breadcrumb list-unstyled">
+            <li><a href="{{ url('/') }}">Home</a></li>
+            <li><span>{{ $banner->banner_heading }}</span></li>
+        </ul>
+        <h2 class="page-header__title">{{ $banner->banner_heading }}</h2>
+    </div>
+</section>
+@endforeach
         <section class="project-one project-one--two project-one--page">
             <div class="container">
                 <div class="row project-one__row">

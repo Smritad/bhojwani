@@ -10,7 +10,7 @@ class ProjectAmenity extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'banner_image', 'description', 'thumbnail_images',
+        'project_id','banner_image', 'description', 'thumbnail_images',
         'headings', 'titles', 'created_by', 'updated_by', 'deleted_by'
     ];
 }

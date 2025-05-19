@@ -19,6 +19,11 @@ use App\Http\Controllers\Backend\Home\OurProjectDetailsController;
 use App\Http\Controllers\Backend\Home\ProjectInformationController;
 use App\Http\Controllers\Backend\Home\ProjectAmenityController;
 use App\Http\Controllers\Backend\Home\SkyhighLuxuryController;
+use App\Http\Controllers\Backend\Home\WalkThroughController;
+use App\Http\Controllers\Backend\Home\OurConnectivityController;
+use App\Http\Controllers\Backend\Home\GalleryImageController;
+use App\Http\Controllers\Backend\Home\OurProjectBannerController;
+use App\Http\Controllers\Backend\Home\MapAddressController;
 
 
 
@@ -70,6 +75,8 @@ Route::resource('footer', FooterDetailsController::class);
 
 // ==== Manage our project section 
 Route::resource('ourprojectcategory-details', OurProjectController::class);
+// ==== Manage our project banner section 
+Route::resource('ourprojectbannerimg-details', OurProjectBannerController::class);
 
 // ==== Manage our project section 
 Route::resource('ourproject-details', OurProjectDetailsController::class);
@@ -80,8 +87,24 @@ Route::resource('projectinformation-details', ProjectInformationController::clas
 // ==== Manage our project section 
 Route::resource('projectamenity-details', ProjectAmenityController::class);
 
+// ==== Manage our projectwalkthrough-details  section 
+Route::resource('projectwalkthrough-details', WalkThroughController::class);
+
+
 // ==== Manage our Sky High Luxury section 
 Route::resource('skyhighluxury-details', SkyhighLuxuryController::class);
+
+// ==== Manage our Connectivity section 
+Route::resource('ourconnectivity-details', OurConnectivityController::class);
+
+// ==== Manage our Gallery iamge section 
+Route::resource('galleryimage-details', GalleryImageController::class);
+
+// ==== Manage our map section 
+Route::resource('mapaddress-details',MapAddressController::class);
+
+
+
 //================================================================================================== frontend
 Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHistoryMiddleware::class]],function(){
 

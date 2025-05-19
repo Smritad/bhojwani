@@ -102,15 +102,19 @@
     </div>
 </div>
 <!-- Category -->
-    <div class="mb-3">
-        <label>Category<span class="txt-danger">*</span></label>
-        <select name="category_id" class="form-control" required>
-    @foreach($categories as $cat)
-        <option value="project_heading{{ $cat->id }}" {{ $project_detail->category_id == $cat->id ? 'selected' : '' }}>
-            {{ $cat-> }}
-        </option>
-    @endforeach
-</select>
+   <div class="mb-3">
+    <label>Category<span class="txt-danger">*</span></label>
+    <select name="category_id" class="form-control" required>
+        <option value="" disabled {{ empty($project_detail->category_id) ? 'selected' : '' }}>Select Project Name</option>
+        @foreach($categories as $cat)
+            <option value="{{ $cat->id }}" {{ $project_detail->category_id == $cat->id ? 'selected' : '' }}>
+                {{ $cat->project_heading }}
+            </option>
+        @endforeach
+    </select>
+</div>
+
+
 <br>
     </div>
     <!-- Description Section -->

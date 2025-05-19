@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Models\ProjectAmenity;
+use App\Models\OurProjectDetail;
+
 use Exception;
 
 class ProjectAmenityController extends Controller
@@ -18,13 +20,16 @@ class ProjectAmenityController extends Controller
     }
 
     public function create()
-    {
-        return view('backend.our-project.project-amenity.create');
+
+    {        
+        $projectid = OurProjectDetail::all();
+        return view('backend.our-project.project-amenity.create',compact('projectid'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
+            'project_id' => 'required|string',
             'banner_image' => 'required|image|mimes:jpeg,jpg,png,webp,svg|max:204800',
             'description' => 'required|string',
             'thumbnail_image.*' => 'mimes:jpeg,jpg,png,webp,svg|max:204800',
@@ -53,7 +58,7 @@ class ProjectAmenityController extends Controller
                 $thumbnails[] = $thumbName;
             }
         }
-
+        $data['project_id'] = $request->project_id;
         $data['thumbnail_images'] = implode(',', $thumbnails);
         $data['headings'] = implode(',', $request->heading);
         $data['titles'] = implode(',', $request->title);
@@ -67,6 +72,7 @@ class ProjectAmenityController extends Controller
     public function edit($id)
     {
         $projectAmenity = ProjectAmenity::findOrFail($id);
+          $projectid = OurProjectDetail::all();
 
         $thumbnailImages = explode(',', $projectAmenity->thumbnail_images);
         $headings = explode(',', $projectAmenity->headings);
@@ -81,7 +87,7 @@ class ProjectAmenityController extends Controller
             ];
         }
 
-        return view('backend.our-project.project-amenity.edit', compact('projectAmenity', 'amenities'));
+        return view('backend.our-project.project-amenity.edit', compact('projectAmenity', 'amenities','projectid'));
     }
 
     public function update(Request $request, $id)

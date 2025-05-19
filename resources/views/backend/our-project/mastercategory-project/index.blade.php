@@ -56,15 +56,15 @@
                      
         <thead>
             <tr>
-                <th>ID</th>
+                <th>#</th>
                 <th>Category Name</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($categories as $category)
+            @foreach($categories as $key => $category)
                 <tr>
-                    <td>{{ $category->id }}</td>
+                    <td>{{ $key + 1 }}</td>
                     <td>{{ $category->category_name }}</td>
                     <td>
                         <a href="{{ route('ourprojectcategory-details.edit', $category->id) }}" class="btn btn-primary">Edit</a>

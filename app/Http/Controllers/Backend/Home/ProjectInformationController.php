@@ -30,6 +30,7 @@ public function create()
     public function store(Request $request)
     {
         $request->validate([
+            
             'banner_image' => 'required|array',
             'banner_image.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:512000',
             'banner_heading' => 'required|string|max:255',

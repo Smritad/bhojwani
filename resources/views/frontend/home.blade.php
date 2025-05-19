@@ -40,7 +40,17 @@
                         <div class="row">
                             <div class="col-md-7">
                                 <div class="main-slider-one__content">
-                                    <h1 class="main-slider-one__title">{{ $banner->banner_heading }}</h1>
+<h1 class="main-slider-one__title">
+    @php
+        $words = explode(' ', $banner->banner_heading);
+    @endphp
+
+    @if(count($words) > 2)
+        {{ $words[0] }} {{ $words[1] }}<br>{{ implode(' ', array_slice($words, 2)) }}
+    @else
+        {{ $banner->banner_heading }}
+    @endif
+</h1>
                                 </div>
                             </div>
                         </div>

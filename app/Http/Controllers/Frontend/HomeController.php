@@ -45,7 +45,7 @@ class HomeController extends Controller
 public function footer(Request $request)
 
 {
-    return view('components.frontend.footer', compact());
+    return view('components.frontend.footer');
 }
 
 }
