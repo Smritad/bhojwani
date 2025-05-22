@@ -65,11 +65,17 @@
                     <span>Our Project</span>
                   </a>
                   <ul class="sidebar-submenu">
+                   <li><a href="{{ route( 'ourprojectbannerimg-details.index') }}" class="{{ request()->routeIs('ourprojectbannerimg-details.index') ? 'active' : '' }}">Our Project Banner Image </a></li>
                     <li><a href="{{ route('ourprojectcategory-details.index') }}" class="{{ request()->routeIs('ourprojectcategory-details.index') ? 'active' : '' }}">Our Project Category Details</a></li>
                     <li><a href="{{ route('ourproject-details.index') }}" class="{{ request()->routeIs('ourproject-details.index') ? 'active' : '' }}">Our Project Details</a></li>
-                    <li><a href="{{ route('projectinformation-details.index') }}" class="{{ request()->routeIs('projectinformation-details.index') ? 'active' : '' }}">Our Project Information</a></li>
-                    <li><a href="{{ route('projectamenity-details.index') }}" class="{{ request()->routeIs('projectamenity-details.index') ? 'active' : '' }}">Our Project Amenity</a></li>
-                    <li><a href="{{ route('skyhighluxury-details.index') }}" class="{{ request()->routeIs('skyhighluxury-details.index') ? 'active' : '' }}">Sky High Luxury</a></li>
+                    <li><a href="{{ route('projectinformation-details.index') }}" class="{{ request()->routeIs('projectinformation-details.index') ? 'active' : '' }}">Our Project Information Details</a></li>
+                    <li><a href="{{ route('projectamenity-details.index') }}" class="{{ request()->routeIs('projectamenity-details.index') ? 'active' : '' }}">Our Project Amenity Details</a></li>
+                    <li><a href="{{ route('skyhighluxury-details.index') }}" class="{{ request()->routeIs('skyhighluxury-details.index') ? 'active' : '' }}">Sky High Luxury Details</a></li>
+                    <li><a href="{{ route('projectwalkthrough-details.index') }}" class="{{ request()->routeIs('projectwalkthrough-details.index') ? 'active' : '' }}">Walk Through Details</a></li>
+                    <li><a href="{{ route( 'ourconnectivity-details.index') }}" class="{{ request()->routeIs('ourconnectivity-details.index') ? 'active' : '' }}">Our Connectivity Details</a></li>
+                    <li><a href="{{ route( 'galleryimage-details.index') }}" class="{{ request()->routeIs('galleryimage-details.index') ? 'active' : '' }}">Gallery Image </a></li>
+                    <li><a href="{{ route( 'mapaddress-details.index') }}" class="{{ request()->routeIs('mapaddress-details.index') ? 'active' : '' }}">Map Address Image </a></li>
+
 
                   </ul>
                 </li>

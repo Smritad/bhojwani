@@ -12,7 +12,27 @@
     <!-- /.preloader -->
     <div class="page-wrapper">
 @include('components.frontend.header')
+<style>.main-slider-one__title {
+    display: inline-block;
+    white-space: nowrap;
+}
 
+.main-slider-one__title .break-line {
+    display: block;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+@media screen and (max-width: 600px) {
+    .main-slider-one__title {
+        white-space: normal; /* Allow text to wrap */
+    }
+
+    .main-slider-one__title .break-line {
+        display: block; /* Force a line break */
+    }
+}
+</style>
 
  <!-- main-slider-start -->
 <!-- main-slider-start -->
@@ -46,11 +66,12 @@
     @endphp
 
     @if(count($words) > 2)
-        {{ $words[0] }} {{ $words[1] }}<br>{{ implode(' ', array_slice($words, 2)) }}
+        {{ $words[0] }} {{ $words[1] }}<span class="break-line">{{ implode(' ', array_slice($words, 2)) }}</span>
     @else
         {{ $banner->banner_heading }}
     @endif
 </h1>
+
                                 </div>
                             </div>
                         </div>

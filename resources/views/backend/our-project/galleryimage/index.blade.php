@@ -55,14 +55,16 @@
                     <table class="display" id="basic-1">
           <thead>
             <tr>
+              <th>#</th>
                 <th>Heading</th>
                 <th>Images</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($galleryImages as $item)
+            @foreach($galleryImages as $key => $item)
                 <tr>
+                  <td>{{$key + 1}}</td>
                     <td>{{ $item->section1_heading }}</td>
                     <td>
                         @foreach(explode(',', $item->images) as $img)

@@ -55,19 +55,22 @@
                     <table class="display" id="basic-1">
   
         <thead>
-            <tr>
+            <tr>                <th>#</th>
+
                 <th>Heading</th>
                 <th>Description</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($connectivities as $item)
+            @foreach($connectivities as $key => $item)
                 <tr>
+                  <td>{{ $key + 1}}</td>
                     <td>{{ $item->section1_heading }}</td>
                     <td>{{ Str::limit($item->section1_description, 100) }}</td>
                     <td>
                         <a href="{{ route('ourconnectivity-details.edit', $item->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                        <br>   <br>
                         <form action="{{ route('ourconnectivity-details.destroy', $item->id) }}" method="POST" class="d-inline"
                               onsubmit="return confirm('Are you sure?')">
                               @csrf @method('DELETE')

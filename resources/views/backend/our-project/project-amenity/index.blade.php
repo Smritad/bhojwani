@@ -56,7 +56,7 @@
                             <div class="table-responsive custom-scrollbar">
                                 <table class="display" id="basic-1">
                                     <thead>
-                                        <tr>
+                                        <tr><th>#</th>
                                             <th>Banner</th>
                                             <!-- <th>Headings</th>
                                             <th>Titles</th> -->
@@ -64,8 +64,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($amenities as $item)
+                                        @foreach ($amenities as $key => $item)
                                             <tr>
+                                                <td> {{$key + 1}}</td>
                                                 <td><img src="{{ asset('uploads/amenity/banner/' . $item->banner_image) }}" width="100" alt="Banner Image"></td>
                                                 <!-- <td>{{ str_replace(',', ', ', $item->headings) }}</td>
                                                 <td>{{ str_replace(',', ', ', $item->titles) }}</td> -->

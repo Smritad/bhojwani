@@ -154,18 +154,19 @@ if ($projectWalkThrough) {
         ];
     }
 }
-// step 6 for ConnectivityDetail
-$connectivity = DB::table('connectivity_details')->where('project_id', $project->id)->first();
+$connectivity = DB::table('connectivity_details')
+                      ->where('project_id', $project->id)
+                      ->first();
 
-    $connectivityData = [];
-    if ($connectivity) {
-        $connectivityData['section1_heading'] = $connectivity->section1_heading ?? '';
-        $connectivityData['section1_description'] = $connectivity->section1_description ?? '';
-        $connectivityData['section2_icons'] = explode(',', $connectivity->section2_icons ?? '');
-        $connectivityData['section2_headings'] = explode(',', $connectivity->section2_headings ?? '');
-        $connectivityData['section2_project_titles'] = explode(',', $connectivity->section2_project_titles ?? '');
-        $connectivityData['section2_project_matters'] = explode(',', $connectivity->section2_project_matters ?? '');
-    }
+    // If connectivity data is found, extract the necessary fields
+    $connectivityData = [
+        'section1_heading' => $connectivity->section1_heading,
+        'section1_description' => $connectivity->section1_description,
+        'section2_headings' => explode(',', $connectivity->section2_headings), // Assuming it's a comma-separated list
+        'section2_svgs' => explode(',', $connectivity->section2_svgs),
+        'section2_project_titles' => explode('|', $connectivity->section2_project_titles), // Assuming it's stored as pipe-separated values
+    ];
+
 
     // Step 8: Get gallery images for this project
 $galleryEntry = DB::table('gallery_images')->where('project_id', $project->id)->first();
@@ -190,7 +191,7 @@ $mapData = DB::table('map_addresses')->where('project_id', $project->id)->first(
     'pdfData' => $pdfData,
     'backgroundImage' => $backgroundImage,
     'videoUrl' => $videoUrl,
-    'connectivityData' => $connectivityData,
+        'connectivityData' => $connectivityData,
         'galleryEntry' => $galleryEntry,
     'galleryImages' => $galleryImages,
     'mapData' => $mapData,

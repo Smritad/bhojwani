@@ -53,14 +53,16 @@
                     <table class="display" id="basic-1">        
                       <thead>
             <tr>
+              <th>#</th>
                 <th>Banner Heading</th>
                 <th>Description Heading</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($project_details as $detail)
+            @foreach($project_details as $key => $detail)
                 <tr>
+                  <td>{{$key + 1}}</td>
                     <td>{{ $detail->banner_heading }}</td>
                     <td>{{ $detail->heading }}</td>
                     <td>

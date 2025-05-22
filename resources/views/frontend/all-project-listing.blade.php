@@ -267,7 +267,7 @@
          data-src="{{ asset('uploads/projectwalkthrough/' . $backgroundImage) }}">
 </section>
 
-        <section class="about-three">
+<section class="about-three">
     <div class="about-two__shapeleft" style="background-image: url('assets/images/shapes/about-shape2-3.png');"></div>
     <div class="about-two__shaperight" style="background-image: url('assets/images/shapes/about-shape2-4.webp');"></div>
     <div class="container">
@@ -278,30 +278,43 @@
 
         <div class="row">
             @foreach($connectivityData['section2_headings'] as $index => $heading)
-                @php
-                    $icon = $connectivityData['section2_icons'][$index] ?? '';
-                    $titles = explode(',', $connectivityData['section2_project_titles'][$index] ?? '');
-                    $matters = explode(',', $connectivityData['section2_project_matters'][$index] ?? '');
-                @endphp
-
                 <div class="col-md-4 service-details__feature__col">
                     <div class="service-details__feature__titlewrap d-flex align-items-center">
-                        <img src="{{ asset('uploads/connectivity/' . $icon) }}" alt="icon" class="me-2" style="width: 40px;" />
+                        <!-- Image for the section -->
+                        <img src="{{ asset('uploads/connectivity/' . $connectivityData['section2_svgs'][$index]) }}" 
+                             alt="icon" class="me-2" style="width: 40px;" />
                         <h6 class="service-details__feature__title">{{ $heading }}</h6>
                     </div>
 
-                    <ul class="list-unstyled service-details__featurelist">
-                        @foreach($titles as $i => $title)
-                            <li>{{ trim($title) }} –
-                                <b>{{ trim($matters[$i] ?? '') }}</b>
-                            </li>
-                        @endforeach
-                    </ul>
+                  <ul class="list-unstyled service-details__featurelist">
+    @php
+        $rawText = $connectivityData['section2_project_titles'][$index] ?? '';
+
+        // Normalize all dashes (including fancy Unicode ones) to regular dash
+        $normalizedText = preg_replace('/[–—−‑‒]/u', '-', $rawText); // Replace various dashes with hyphen
+
+        // Match: "Name - 123m" or "Name - 5.5km", ensure distance at end
+        preg_match_all('/(.*?-\s*\d+(?:\.\d+)?\s*(?:km|m))(?=\s+[A-Z]|$)/u', $normalizedText, $matches);
+        $items = $matches[1] ?? [];
+    @endphp
+
+    @foreach($items as $item)
+        @php
+            $parts = explode('-', $item, 2);
+        @endphp
+        <li>
+            {{ trim($parts[0]) }} – <b>{{ isset($parts[1]) ? trim($parts[1]) : '' }}</b>
+        </li>
+    @endforeach
+</ul>
+
+
                 </div>
             @endforeach
         </div>
     </div>
 </section>
+
 
       <section class="slider">
     <div class="container">
